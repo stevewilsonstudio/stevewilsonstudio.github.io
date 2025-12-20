@@ -12,8 +12,8 @@
       --text:#f2f4f8;
       --muted:#b9c0cf;
       --line:rgba(255,255,255,0.12);
-      --card:rgba(20,24,36,0.75);
-      --max:1060px;
+      --card:rgba(20,24,36,0.70);
+      --max:1120px;
     }
     *{box-sizing:border-box}
     body{
@@ -21,45 +21,47 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       color:var(--text);
       background:
-        radial-gradient(1200px 700px at 20% -10%, rgba(120,170,255,0.18), transparent 60%),
-        radial-gradient(900px 500px at 90% 0%, rgba(255,200,140,0.10), transparent 55%),
+        radial-gradient(1200px 700px at 20% -10%, rgba(70,140,255,0.22), transparent 60%),
+        radial-gradient(900px 500px at 90% 0%, rgba(255,190,70,0.14), transparent 55%),
         var(--bg);
       line-height:1.55;
     }
     a{color:inherit; text-decoration:none}
     .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 64px}
+
     header{
       display:flex;
       align-items:flex-end;
       justify-content:space-between;
       gap:16px;
-      padding-bottom:22px;
+      padding-bottom:18px;
     }
 
-    /* Brand */
-    .brand{display:flex; flex-direction:column; gap:6px}
+    /* Brand (clickable to go home) */
+    .brandLink{display:inline-block}
     .brandName{
-      font-size:34px;
-      letter-spacing:0.2px;
-      line-height:1.05;
       margin:0;
-      font-weight:650;
-      /* subtle “hint of light” gradient */
+      line-height:1.0;
+      font-weight:800;
+      letter-spacing:0.2px;
+      font-size:64px; /* ~2x bigger */
+      /* more vivid + electric gradient */
       background: linear-gradient(90deg,
-        rgba(165,205,255,0.95) 0%,
-        rgba(235,243,255,0.92) 55%,
-        rgba(255,230,185,0.92) 100%);
+        rgba(0,145,255,1) 0%,
+        rgba(120,210,255,1) 42%,
+        rgba(255,214,60,1) 100%);
       -webkit-background-clip:text;
       background-clip:text;
       color:transparent;
+      text-shadow: 0 0 24px rgba(0,145,255,0.10), 0 0 20px rgba(255,214,60,0.08);
     }
     .brandTag{
-      font-size:13px;
+      margin:6px 0 0;
+      font-size:14px;
       color:var(--muted);
-      margin:0;
     }
 
-    nav{display:flex; gap:10px; flex-wrap:wrap; padding-bottom:2px}
+    nav{display:flex; gap:10px; flex-wrap:wrap; padding-bottom:3px}
     nav a{
       font-size:14px;
       color:var(--muted);
@@ -77,43 +79,47 @@
       background:var(--card);
       border:1px solid var(--line);
       border-radius:18px;
-      padding:22px;
+      padding:18px;
       backdrop-filter: blur(6px);
       box-shadow: 0 12px 30px rgba(0,0,0,0.35);
     }
+
+    /* 20% / 80% hero layout */
     .hero{
       display:grid;
-      grid-template-columns: 1.08fr 0.92fr;
+      grid-template-columns: 0.62fr 2.38fr; /* ~20% / 80% */
       gap:18px;
-      margin-top:12px;
+      margin-top:10px;
       align-items:stretch;
     }
+
+    /* Make the headline a bit smaller + more readable */
     h1{
-      font-size:40px;
-      line-height:1.08;
-      margin:0 0 12px;
-      letter-spacing:-0.7px;
+      margin:0 0 10px;
+      font-size:22px;
+      line-height:1.25;
       font-weight:650;
-    }
-    .lead{
-      font-size:16px;
-      color:var(--muted);
-      margin:0 0 14px;
-      max-width:56ch;
+      letter-spacing:-0.2px;
     }
 
-    .cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
+    .lead{
+      margin:0;
+      font-size:14px;
+      color:var(--muted);
+    }
+
+    .cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
     .btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      padding:10px 14px;
+      padding:10px 12px;
       border-radius:12px;
       border:1px solid var(--line);
       background:rgba(255,255,255,0.04);
       color:var(--text);
-      font-weight:600;
-      font-size:14px;
+      font-weight:650;
+      font-size:13px;
     }
     .btn.primary{
       background:#ffffff;
@@ -124,9 +130,9 @@
 
     .meta{
       display:grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap:10px;
-      margin-top:16px;
+      margin-top:12px;
     }
     .pill{
       border:1px solid var(--line);
@@ -138,21 +144,25 @@
     }
     .pill b{color:var(--text); font-weight:650}
 
+    .heroImageWrap{
+      padding:0;
+      overflow:hidden;
+    }
+    .heroImageWrap img{
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
+      border-radius:18px;
+    }
+
     .sectionTitle{
-      margin:34px 0 12px;
+      margin:30px 0 12px;
       font-size:14px;
       color:var(--muted);
       text-transform:uppercase;
       letter-spacing:0.25px;
     }
-
-    .aboutText{
-      color: var(--muted);
-      font-size: 15px;
-      max-width: 70ch;
-      margin: 0;
-    }
-    .aboutText + .aboutText { margin-top: 12px; }
 
     .grid{
       display:grid;
@@ -172,7 +182,7 @@
       font-weight:650;
       color:rgba(255,255,255,0.72);
       background:
-        linear-gradient(135deg, rgba(120,170,255,0.18), rgba(255,200,140,0.10));
+        linear-gradient(135deg, rgba(0,145,255,0.18), rgba(255,214,60,0.10));
     }
     .info{padding:12px}
     .info b{display:block; font-size:14px; color:var(--text)}
@@ -190,12 +200,13 @@
       color:var(--muted);
     }
 
-    @media (max-width: 860px){
+    /* Responsive: stack on mobile */
+    @media (max-width: 900px){
       header{align-items:flex-start}
-      .brandName{font-size:30px}
-      .hero{grid-template-columns:1fr}
-      h1{font-size:36px}
-      .grid{grid-template-columns:1fr}
+      .brandName{font-size:44px}
+      .hero{grid-template-columns: 1fr}
+      .heroImageWrap img{height:auto; object-fit:contain}
+      .grid{grid-template-columns: 1fr}
       .thumb{height:190px}
     }
   </style>
@@ -203,15 +214,16 @@
 
 <body>
   <div class="wrap">
-
     <header>
-      <div class="brand">
-        <p class="brandName">Steve Wilson Studio</p>
+      <div>
+        <a class="brandLink" href="/" aria-label="Home">
+          <p class="brandName">Steve Wilson Studio</p>
+        </a>
         <p class="brandTag">Original paintings &amp; fine art prints</p>
       </div>
 
       <nav>
-        <a href="#about">About</a>
+        <a href="/about.html">About</a>
         <a href="#work">Work</a>
         <a href="#prints">Prints</a>
         <a href="#originals">Originals</a>
@@ -220,11 +232,10 @@
     </header>
 
     <main>
-
       <section class="hero">
+        <!-- Left: small text panel (~20%) -->
         <div class="card">
           <h1>Paintings shaped by light, place, and the fleeting beauty found in everyday life.</h1>
-
           <p class="lead">
             I paint as a way of remembering how moments feel—brief, familiar pauses that stay with us longer than we expect.
           </p>
@@ -236,38 +247,15 @@
           </div>
 
           <div class="meta">
-            <div class="pill">
-              <b>Prints</b><br>
-              Archival prints, packed and shipped by me.
-            </div>
-            <div class="pill">
-              <b>Originals</b><br>
-              Availability changes—email for details.
-            </div>
+            <div class="pill"><b>Prints</b><br>Archival prints, packed and shipped by me.</div>
+            <div class="pill"><b>Originals</b><br>Availability changes—email for details.</div>
           </div>
         </div>
 
-        <div class="card">
-          <img src="Sailboats.jpg"
-               alt="Sailboats painting by Steve Wilson"
-               style="width:100%; height:auto; border-radius:14px; display:block;" />
+        <!-- Right: large featured painting (~80%) -->
+        <div class="card heroImageWrap">
+          <img src="Sailboats.jpg" alt="Sailboats painting by Steve Wilson" />
         </div>
-      </section>
-
-      <div class="sectionTitle" id="about">About</div>
-      <section class="card">
-        <p class="aboutText">
-          Art has always been my way of connecting with the world—often where words fall short. I’m not a full-time professional artist,
-          but painting has been a lifelong practice I’ve continued through training and countless hours at the easel.
-        </p>
-        <p class="aboutText">
-          My aim is expressive but representational work, inspired by the ephemeral beauty of life and nature. I hope these paintings invite
-          a shared sense of connection—between people, place, and the ever-changing atmosphere around us.
-        </p>
-        <p class="aboutText">
-          Thank you for taking the time to view my work. It means a lot to me, and I hope the paintings offer a bit of the same happiness
-          and wonder that making them brings to me.
-        </p>
       </section>
 
       <div class="sectionTitle" id="work">Featured work</div>
@@ -310,18 +298,16 @@
       <div class="sectionTitle" id="contact">Contact</div>
       <div class="card">
         Email:
-        <a href="mailto:stevenrwilson7@icloud.com" style="font-weight:650; color: var(--text);">
+        <a href="mailto:stevenrwilson7@icloud.com" style="font-weight:800; color: var(--text);">
           stevenrwilson7@icloud.com
         </a>
       </div>
-
     </main>
 
     <footer>
       <span>© <span id="y"></span> Steve Wilson Studio</span>
       <span>stevewilsonstudio.com</span>
     </footer>
-
   </div>
 
   <script>
