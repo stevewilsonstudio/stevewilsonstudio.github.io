@@ -21,8 +21,8 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       color:var(--text);
       background:
-        radial-gradient(1200px 700px at 20% -10%, rgba(70,140,255,0.22), transparent 60%),
-        radial-gradient(900px 500px at 90% 0%, rgba(255,190,70,0.14), transparent 55%),
+        radial-gradient(1200px 700px at 20% -10%, rgba(90,160,255,0.18), transparent 60%),
+        radial-gradient(900px 500px at 90% 0%, rgba(255,208,140,0.12), transparent 55%),
         var(--bg);
       line-height:1.55;
     }
@@ -44,16 +44,16 @@
       line-height:1.0;
       font-weight:800;
       letter-spacing:0.2px;
-      font-size:64px; /* ~2x bigger */
-      /* more vivid + electric gradient */
+      font-size:64px;
+      /* softer “morning light” gradient */
       background: linear-gradient(90deg,
-        rgba(0,145,255,1) 0%,
-        rgba(120,210,255,1) 42%,
-        rgba(255,214,60,1) 100%);
+        rgba(120,190,255,1) 0%,
+        rgba(225,245,255,0.98) 50%,
+        rgba(255,226,170,0.98) 100%);
       -webkit-background-clip:text;
       background-clip:text;
       color:transparent;
-      text-shadow: 0 0 24px rgba(0,145,255,0.10), 0 0 20px rgba(255,214,60,0.08);
+      text-shadow: 0 0 18px rgba(120,190,255,0.10), 0 0 16px rgba(255,226,170,0.06);
     }
     .brandTag{
       margin:6px 0 0;
@@ -84,16 +84,15 @@
       box-shadow: 0 12px 30px rgba(0,0,0,0.35);
     }
 
-    /* 20% / 80% hero layout */
+    /* 30% / 70% hero layout */
     .hero{
       display:grid;
-      grid-template-columns: 0.62fr 2.38fr; /* ~20% / 80% */
+      grid-template-columns: 0.95fr 2.05fr; /* ~30% / 70% */
       gap:18px;
       margin-top:10px;
       align-items:stretch;
     }
 
-    /* Make the headline a bit smaller + more readable */
     h1{
       margin:0 0 10px;
       font-size:22px;
@@ -182,7 +181,7 @@
       font-weight:650;
       color:rgba(255,255,255,0.72);
       background:
-        linear-gradient(135deg, rgba(0,145,255,0.18), rgba(255,214,60,0.10));
+        linear-gradient(135deg, rgba(120,190,255,0.18), rgba(255,226,170,0.10));
     }
     .info{padding:12px}
     .info b{display:block; font-size:14px; color:var(--text)}
@@ -200,7 +199,6 @@
       color:var(--muted);
     }
 
-    /* Responsive: stack on mobile */
     @media (max-width: 900px){
       header{align-items:flex-start}
       .brandName{font-size:44px}
@@ -216,14 +214,14 @@
   <div class="wrap">
     <header>
       <div>
-        <a class="brandLink" href="/" aria-label="Home">
+        <a class="brandLink" href="index.html" aria-label="Home">
           <p class="brandName">Steve Wilson Studio</p>
         </a>
         <p class="brandTag">Original paintings &amp; fine art prints</p>
       </div>
 
       <nav>
-        <a href="/about.html">About</a>
+        <a href="about.html">About</a>
         <a href="#work">Work</a>
         <a href="#prints">Prints</a>
         <a href="#originals">Originals</a>
@@ -233,7 +231,6 @@
 
     <main>
       <section class="hero">
-        <!-- Left: small text panel (~20%) -->
         <div class="card">
           <h1>Paintings shaped by light, place, and the fleeting beauty found in everyday life.</h1>
           <p class="lead">
@@ -252,7 +249,6 @@
           </div>
         </div>
 
-        <!-- Right: large featured painting (~80%) -->
         <div class="card heroImageWrap">
           <img src="Sailboats.jpg" alt="Sailboats painting by Steve Wilson" />
         </div>
