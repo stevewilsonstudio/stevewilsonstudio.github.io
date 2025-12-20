@@ -39,7 +39,7 @@
     /* Brand */
     .brand{display:flex; flex-direction:column; gap:6px}
     .brandName{
-      font-size:34px;               /* bigger */
+      font-size:34px;
       letter-spacing:0.2px;
       line-height:1.05;
       margin:0;
@@ -101,6 +101,7 @@
       margin:0 0 14px;
       max-width:56ch;
     }
+
     .cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
     .btn{
       display:inline-flex;
@@ -145,6 +146,14 @@
       letter-spacing:0.25px;
     }
 
+    .aboutText{
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 70ch;
+      margin: 0;
+    }
+    .aboutText + .aboutText { margin-top: 12px; }
+
     .grid{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -187,6 +196,7 @@
       .hero{grid-template-columns:1fr}
       h1{font-size:36px}
       .grid{grid-template-columns:1fr}
+      .thumb{height:190px}
     }
   </style>
 </head>
@@ -197,10 +207,11 @@
     <header>
       <div class="brand">
         <p class="brandName">Steve Wilson Studio</p>
-        <p class="brandTag">Original paintings & fine art prints</p>
+        <p class="brandTag">Original paintings &amp; fine art prints</p>
       </div>
 
       <nav>
+        <a href="#about">About</a>
         <a href="#work">Work</a>
         <a href="#prints">Prints</a>
         <a href="#originals">Originals</a>
@@ -243,6 +254,22 @@
         </div>
       </section>
 
+      <div class="sectionTitle" id="about">About</div>
+      <section class="card">
+        <p class="aboutText">
+          Art has always been my way of connecting with the world—often where words fall short. I’m not a full-time professional artist,
+          but painting has been a lifelong practice I’ve continued through training and countless hours at the easel.
+        </p>
+        <p class="aboutText">
+          My aim is expressive but representational work, inspired by the ephemeral beauty of life and nature. I hope these paintings invite
+          a shared sense of connection—between people, place, and the ever-changing atmosphere around us.
+        </p>
+        <p class="aboutText">
+          Thank you for taking the time to view my work. It means a lot to me, and I hope the paintings offer a bit of the same happiness
+          and wonder that making them brings to me.
+        </p>
+      </section>
+
       <div class="sectionTitle" id="work">Featured work</div>
       <section class="grid">
         <div class="art">
@@ -282,7 +309,10 @@
 
       <div class="sectionTitle" id="contact">Contact</div>
       <div class="card">
-        Email: <strong>YOUR_EMAIL_HERE</strong>
+        Email:
+        <a href="mailto:stevenrwilson7@icloud.com" style="font-weight:650; color: var(--text);">
+          stevenrwilson7@icloud.com
+        </a>
       </div>
 
     </main>
