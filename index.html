@@ -1,205 +1,235 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Steve Wilson Studio</title>
 
-  <!-- Classic high-contrast serif (previous style) + clean sans -->
+  <!-- Classic high-contrast serif italic (free Google font) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --text:#ffffff;
-      --muted:rgba(255,255,255,0.75);
-      --dim:0.55;
-      --pad:56px;
+      --overlay: rgba(0,0,0,.42);
+      --menuText: rgba(255,255,255,.92);
+      --menuTextSoft: rgba(255,255,255,.78);
+      --linkHover: rgba(255,255,255,1);
     }
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; margin:0; }
     body{
-      margin:0;
-      color:var(--text);
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:#000;
+      overflow:hidden;
+    }
+
+    /* Fullscreen background slideshow */
+    .hero{
+      position:relative;
+      height:100vh;
+      width:100%;
+      background:#000;
+    }
+
+    .bg{
+      position:absolute;
+      inset:0;
+      z-index:0;
       overflow:hidden;
       background:#000;
     }
 
-    /* Background slideshow */
-    .bg{
-      position:fixed;
-      inset:0;
-      z-index:-2;
-    }
     .bg::after{
       content:"";
       position:absolute;
       inset:0;
-      background:rgba(0,0,0,var(--dim));
-      z-index:2;
+      background: linear-gradient(90deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.30) 45%, rgba(0,0,0,.22) 100%);
+      pointer-events:none;
     }
 
-    .slide{
+    .bg-slide{
       position:absolute;
       inset:0;
-      background-size:cover;
-      background-position:center;
+      background-size: cover;
+      background-position: center;
       opacity:0;
-      transition: opacity 1300ms ease;
+      transition: opacity 1400ms ease-in-out;
       transform: scale(1.03);
-      z-index:1;
     }
-    .slide.active{opacity:1}
-
-    /* Layout */
-    .content{
-      height:100vh;
-      padding:var(--pad);
-      display:flex;
-      align-items:flex-start;
+    .bg-slide.active{
+      opacity:1;
     }
 
+    /* Left panel content */
     .panel{
-      max-width:520px;
-      margin-top:34vh; /* lowered text block */
+      position:relative;
+      z-index:2;
+      height:100%;
+      display:flex;
+      align-items:center;       /* centers vertically */
+      padding-left: clamp(18px, 4vw, 56px);
+      padding-right: 16px;
     }
 
-    /* Name */
+    .panel-inner{
+      width:min(520px, 82vw);
+      transform: translateY(8vh); /* push down so name isn't cut off (Svob-ish) */
+    }
+
     .name{
-      margin:0 0 14px 0;
-      font-family:"Libre Bodoni", serif;
-      font-style:italic;
-      font-weight:300;
-      font-size:clamp(52px,5.5vw,88px);
-      letter-spacing:0.06em;   /* increased spacing */
-      line-height:1.15;        /* more breathing room */
-      white-space:nowrap;      /* keep on one line */
+      font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+      font-style: italic;
+      font-weight: 500;
+      color: var(--menuText);
+      font-size: clamp(52px, 7.2vw, 92px);
+      line-height: .92;
+      letter-spacing: 0.02em;  /* slightly spaced like Svob */
+      margin:0 0 10px 0;
+      text-shadow: 0 12px 30px rgba(0,0,0,.35);
     }
 
-    .welcome{
-      margin:0 0 34px 2px;
-      font-size:15px;
-      color:var(--muted);
+    .tagline{
+      color: var(--menuTextSoft);
+      font-size: 15px;
+      letter-spacing: 0.02em;
+      margin:0 0 22px 0;
+      text-shadow: 0 10px 24px rgba(0,0,0,.35);
     }
 
-    /* Navigation */
     .nav{
-      list-style:none;
-      padding:0;
-      margin:0 0 36px 2px;
       display:flex;
       flex-direction:column;
-      gap:20px;                /* more vertical space */
+      gap: 14px;                 /* extra space between lines */
+      margin-top: 10px;
     }
 
     .nav a{
+      color: var(--menuTextSoft);
       text-decoration:none;
-      font-size:14px;
-      text-transform:uppercase;
-      letter-spacing:0.22em;   /* increased tracking */
-      color:rgba(255,255,255,0.88);
+      font-size: 14px;
+      letter-spacing: 0.28em;    /* spaced letters like Svob */
+      text-transform: uppercase;
+      width: fit-content;
     }
-
     .nav a:hover{
-      color:#ffffff;
+      color: var(--linkHover);
     }
 
-    /* Icons */
     .icons{
       display:flex;
-      gap:20px;
-      margin-left:2px;
+      gap: 14px;
+      margin-top: 22px;
       align-items:center;
     }
-
     .icon{
-      width:30px;
-      height:30px;
-      display:inline-block;
-      opacity:0.9;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width: 28px;              /* larger icons */
+      height: 28px;
+      opacity: .9;
+      transition: opacity .15s ease;
+    }
+    .icon:hover{ opacity:1; }
+
+    .icon svg{
+      width: 28px;
+      height: 28px;
+      fill: rgba(255,255,255,.92);
+      filter: drop-shadow(0 10px 22px rgba(0,0,0,.35));
     }
 
-    .icon:hover{opacity:1}
-
-    svg{
-      width:30px;
-      height:30px;
-      stroke:rgba(255,255,255,0.92);
-      stroke-width:1.7;
-      fill:none;
+    /* Small footer */
+    .footer{
+      position:absolute;
+      left: clamp(18px, 4vw, 56px);
+      bottom: 18px;
+      z-index:3;
+      color: rgba(255,255,255,.65);
+      font-size: 12px;
+      letter-spacing: 0.03em;
+      text-shadow: 0 10px 22px rgba(0,0,0,.35);
     }
 
-    /* Responsive */
-    @media (max-width:700px){
-      :root{--pad:28px}
-      .panel{margin-top:30vh}
-      .nav{gap:18px}
+    /* Mobile adjustments */
+    @media (max-width: 520px){
+      body{ overflow:hidden; }
+      .panel-inner{ transform: translateY(6vh); }
+      .nav{ gap: 12px; }
+      .tagline{ font-size: 14px; }
     }
   </style>
 </head>
 
 <body>
+  <main class="hero">
+    <div class="bg" aria-hidden="true">
+      <!-- FIRST IMAGE should be Studio.jpg -->
+      <div class="bg-slide active" style="background-image:url('Studio.jpg')"></div>
 
-  <!-- Background images -->
-  <div class="bg">
-    <div class="slide active" style="background-image:url('Cumberland.jpg')"></div>
-    <div class="slide" style="background-image:url('Breckenridge.jpg')"></div>
-    <div class="slide" style="background-image:url('Keeneland.jpg')"></div>
-  </div>
+      <!-- Rotation images -->
+      <div class="bg-slide" style="background-image:url('Cumberland.jpg')"></div>
+      <div class="bg-slide" style="background-image:url('Breckenridge.jpg')"></div>
+      <div class="bg-slide" style="background-image:url('Keeneland.jpg')"></div>
+    </div>
 
-  <main class="content">
     <section class="panel">
-      <h1 class="name">Steve Wilson</h1>
-      <p class="welcome">Welcome to my studio website.</p>
+      <div class="panel-inner">
+        <h1 class="name">Steve Wilson</h1>
+        <p class="tagline">Welcome to my studio website.</p>
 
-      <ul class="nav">
-        <li><a href="paintings.html">Paintings</a></li>
-        <li><a href="prints.html">Prints</a></li>
-        <li><a href="workshops.html">Workshops &amp; Exhibitions</a></li>
-        <li><a href="galleries.html">Galleries</a></li>
-        <li><a href="about.html">About</a></li>
-      </ul>
+        <nav class="nav" aria-label="Site">
+          <a href="paintings.html">Paintings</a>
+          <a href="prints.html">Prints</a>
+          <a href="workshops.html">Workshops &amp; Exhibitions</a>
+          <a href="galleries.html">Galleries</a>
+          <a href="about.html">About</a>
+        </nav>
 
-      <div class="icons">
-        <!-- Instagram -->
-        <a class="icon" href="https://www.instagram.com/steven_wilson_fine_art/" target="_blank">
-          <svg viewBox="0 0 24 24">
-            <rect x="4" y="4" width="16" height="16" rx="4"/>
-            <circle cx="12" cy="12" r="3.5"/>
-            <circle cx="17.5" cy="6.5" r="1"/>
-          </svg>
-        </a>
+        <div class="icons" aria-label="Social links">
+          <!-- Instagram -->
+          <a class="icon" href="https://www.instagram.com/steven_wilson_fine_art/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm9 2h-9A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9A3.5 3.5 0 0 0 20 16.5v-9A3.5 3.5 0 0 0 16.5 4zm.75 2.25a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>
+            </svg>
+          </a>
 
-        <!-- Email -->
-        <a class="icon" href="mailto:stevenrwilson7@icloud.com">
-          <svg viewBox="0 0 24 24">
-            <path d="M4 7h16v10H4z"/>
-            <path d="M4 7l8 6 8-6"/>
-          </svg>
-        </a>
+          <!-- Mail -->
+          <a class="icon" href="mailto:stevenrwilson7@icloud.com" aria-label="Email">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/>
+            </svg>
+          </a>
 
-        <!-- Facebook -->
-        <a class="icon" href="https://www.facebook.com/search/top?q=steven%20wilson%20art" target="_blank">
-          <svg viewBox="0 0 24 24">
-            <path d="M14 8h3V5h-3c-2.2 0-4 1.8-4 4v2H7v3h3v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1z"/>
-          </svg>
-        </a>
+          <!-- Facebook -->
+          <a class="icon" href="https://www.facebook.com/search/top?q=steven%20wilson%20art" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.2c0-.9.3-1.6 1.6-1.6H16.7V5a22 22 0 0 0-2.4-.1c-2.4 0-4 1.5-4 4.1V11H7.7v3h2.6v8h3.2z"/>
+            </svg>
+          </a>
+        </div>
       </div>
     </section>
+
+    <div class="footer">© Steve Wilson Studio</div>
   </main>
 
   <script>
-    const slides = document.querySelectorAll('.slide');
+    // Background cross-fade slideshow
+    const slides = Array.from(document.querySelectorAll(".bg-slide"));
     let i = 0;
-    setInterval(() => {
-      slides[i].classList.remove('active');
-      i = (i + 1) % slides.length;
-      slides[i].classList.add('active');
-    }, 6500);
-  </script>
 
+    // Ensure first slide is active (Studio.jpg)
+    slides.forEach((s, idx) => s.classList.toggle("active", idx === 0));
+
+    setInterval(() => {
+      slides[i].classList.remove("active");
+      i = (i + 1) % slides.length;
+      slides[i].classList.add("active");
+    }, 6500); // seconds per image
+  </script>
 </body>
 </html>
