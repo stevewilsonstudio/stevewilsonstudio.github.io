@@ -10,11 +10,15 @@
       --bg:#0f1115; --text:#f2f4f8; --muted:#b9c0cf;
       --line:rgba(255,255,255,0.12); --card:rgba(20,24,36,0.70);
       --max:1240px;
+
       --grad: linear-gradient(90deg,
         rgba(120,190,255,1) 0%,
         rgba(235,248,255,0.98) 52%,
         rgba(255,228,170,0.98) 100%);
+
+      --radius:0px; /* ✅ sharp corners everywhere */
     }
+
     *{box-sizing:border-box}
     body{
       margin:0;
@@ -34,67 +38,70 @@
     .brandName{margin:0; line-height:1.0; font-weight:800; letter-spacing:0.2px; font-size:56px}
     .brandTag{margin:6px 0 0; font-size:14px; color:var(--muted)}
     nav{display:flex; gap:10px; flex-wrap:wrap; padding-bottom:3px}
-    nav a{font-size:14px; color:var(--muted); padding:8px 10px; border-radius:10px; border:1px solid transparent}
+    nav a{font-size:14px; color:var(--muted); padding:8px 10px; border-radius:var(--radius); border:1px solid transparent}
     nav a:hover{
       border-color:var(--line); background:rgba(255,255,255,0.04);
       background-image:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;
     }
 
     .card{
-      background:var(--card); border:1px solid var(--line); border-radius:18px; padding:22px;
-      backdrop-filter: blur(6px); box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:22px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
     }
     h1{margin:0 0 10px; font-size:26px; font-weight:800; letter-spacing:-0.3px}
     .intro{margin:0; color:var(--muted); max-width:85ch}
 
-    /* Masonry-ish grid using CSS Grid “dense” packing */
-    .masonry{
-      margin-top:16px;
+    /* ✅ Svob-like balanced collage grid */
+    .gallery{
+      margin-top:18px;
       display:grid;
-      grid-template-columns: repeat(12, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap:14px;
-      grid-auto-flow:dense;
+      grid-auto-flow: dense;
     }
 
     .tile{
-      border-radius:18px;
-      overflow:hidden;
       border:1px solid var(--line);
-      background:rgba(255,255,255,0.03);
+      border-radius:var(--radius);
+      overflow:hidden;
+      background:rgba(255,255,255,0.02);
       position:relative;
       box-shadow: 0 10px 26px rgba(0,0,0,0.25);
+      min-height: 220px; /* ensures small tiles still feel substantial */
     }
+
     .tile img{
       width:100%;
       height:100%;
       object-fit:cover;
       display:block;
-      transform: scale(1.01);
+      border-radius:0;
     }
 
-    /* Size presets */
-    .small{grid-column: span 4; grid-row: span 5;}
-    .wide{grid-column: span 8; grid-row: span 5;}
-    .tall{grid-column: span 4; grid-row: span 8;}
-    .feature{grid-column: span 8; grid-row: span 8;}
+    /* Size classes (balanced) */
+    .p-sm {grid-column: span 2; grid-row: span 1; height: 260px;}
+    .p-md {grid-column: span 2; grid-row: span 1; height: 340px;}
+    .p-lg {grid-column: span 3; grid-row: span 1; height: 380px;}
+    .p-xl {grid-column: span 3; grid-row: span 1; height: 520px;}
 
-    /* Caption overlay */
+    /* Caption overlay (clean, not “web store”) */
     .cap{
-      position:absolute;
-      left:0; right:0; bottom:0;
-      padding:12px 12px 10px;
-      background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.72) 70%);
-      color: rgba(255,255,255,0.92);
+      position:absolute; left:0; right:0; bottom:0;
+      padding:12px;
+      background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.75) 70%);
     }
     .cap b{display:block; font-size:15px; margin-bottom:2px}
     .cap span{display:block; font-size:13px; color:rgba(255,255,255,0.72)}
 
-    /* Small availability tag */
     .tag{
       position:absolute;
       top:10px; left:10px;
       padding:6px 10px;
-      border-radius:999px;
+      border-radius:0;
       border:1px solid rgba(255,255,255,0.18);
       background: rgba(0,0,0,0.35);
       font-size:12px;
@@ -102,13 +109,13 @@
       backdrop-filter: blur(6px);
     }
 
+    /* Mobile: single column, same vibe */
     @media (max-width: 980px){
       .brandName{font-size:42px}
-      .masonry{grid-template-columns: repeat(6, 1fr);}
-      .small{grid-column: span 6; grid-row: span 7;}
-      .wide{grid-column: span 6; grid-row: span 7;}
-      .tall{grid-column: span 6; grid-row: span 9;}
-      .feature{grid-column: span 6; grid-row: span 9;}
+      .gallery{grid-template-columns: 1fr; gap:14px}
+      .p-sm, .p-md, .p-lg, .p-xl{grid-column: span 1; height: auto}
+      .tile{min-height: 0}
+      .tile img{height:auto}
     }
   </style>
 </head>
@@ -136,9 +143,10 @@
           A selection of original paintings. If you’re interested in a piece, email me and I’ll confirm availability and shipping.
         </p>
 
-        <div class="masonry">
-          <!-- FEATURE -->
-          <a class="tile feature" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Sailboats">
+        <div class="gallery">
+          <!-- You control the look by changing p-sm / p-md / p-lg / p-xl -->
+
+          <a class="tile p-xl" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Sailboats">
             <span class="tag">Inquire</span>
             <img src="Sailboats.jpg" alt="Sailboats">
             <div class="cap">
@@ -147,20 +155,31 @@
             </div>
           </a>
 
-          <!-- PLACEHOLDERS — replace images/titles as you add work -->
-          <a class="tile tall" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Coming%20Soon">
+          <a class="tile p-md" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Coming%20Soon">
             <span class="tag">Coming soon</span>
             <img src="Sailboats.jpg" alt="Coming soon">
             <div class="cap"><b class="gradText">Coming soon</b><span>Oil • details soon</span></div>
           </a>
 
-          <a class="tile wide" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Coming%20Soon">
+          <a class="tile p-lg" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Coming%20Soon">
             <span class="tag">Coming soon</span>
             <img src="Sailboats.jpg" alt="Coming soon">
             <div class="cap"><b class="gradText">Coming soon</b><span>Oil • details soon</span></div>
           </a>
 
-          <a class="tile small" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Coming%20Soon">
+          <a class="tile p-sm" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Coming%20Soon">
+            <span class="tag">Coming soon</span>
+            <img src="Sailboats.jpg" alt="Coming soon">
+            <div class="cap"><b class="gradText">Coming soon</b><span>Oil • details soon</span></div>
+          </a>
+
+          <a class="tile p-lg" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Coming%20Soon">
+            <span class="tag">Coming soon</span>
+            <img src="Sailboats.jpg" alt="Coming soon">
+            <div class="cap"><b class="gradText">Coming soon</b><span>Oil • details soon</span></div>
+          </a>
+
+          <a class="tile p-md" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Coming%20Soon">
             <span class="tag">Coming soon</span>
             <img src="Sailboats.jpg" alt="Coming soon">
             <div class="cap"><b class="gradText">Coming soon</b><span>Oil • details soon</span></div>
