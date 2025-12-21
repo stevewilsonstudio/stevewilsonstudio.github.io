@@ -16,7 +16,7 @@
         rgba(235,248,255,0.98) 52%,
         rgba(255,228,170,0.98) 100%);
 
-      --radius:0px; /* ✅ sharp corners everywhere */
+      --radius:0px; /* sharp corners */
     }
 
     *{box-sizing:border-box}
@@ -55,40 +55,33 @@
     h1{margin:0 0 10px; font-size:26px; font-weight:800; letter-spacing:-0.3px}
     .intro{margin:0; color:var(--muted); max-width:85ch}
 
-    /* ✅ Svob-like balanced collage grid */
-    .gallery{
+    /* ✅ TRUE masonry “puzzle” using columns */
+    .masonry{
       margin-top:18px;
-      display:grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap:14px;
-      grid-auto-flow: dense;
+      column-count: 3;
+      column-gap: 14px;
     }
 
     .tile{
+      break-inside: avoid;
+      margin: 0 0 14px;
       border:1px solid var(--line);
       border-radius:var(--radius);
       overflow:hidden;
       background:rgba(255,255,255,0.02);
       position:relative;
       box-shadow: 0 10px 26px rgba(0,0,0,0.25);
-      min-height: 220px; /* ensures small tiles still feel substantial */
+      display:block;
     }
 
     .tile img{
       width:100%;
-      height:100%;
-      object-fit:cover;
+      height:auto;            /* ✅ remove fixed heights (kills the black holes) */
       display:block;
       border-radius:0;
     }
 
-    /* Size classes (balanced) */
-    .p-sm {grid-column: span 2; grid-row: span 1; height: 260px;}
-    .p-md {grid-column: span 2; grid-row: span 1; height: 340px;}
-    .p-lg {grid-column: span 3; grid-row: span 1; height: 380px;}
-    .p-xl {grid-column: span 3; grid-row: span 1; height: 520px;}
-
-    /* Caption overlay (clean, not “web store”) */
+    /* Caption overlay */
     .cap{
       position:absolute; left:0; right:0; bottom:0;
       padding:12px;
@@ -109,13 +102,19 @@
       backdrop-filter: blur(6px);
     }
 
-    /* Mobile: single column, same vibe */
-    @media (max-width: 980px){
+    /* Optional: make some tiles “featured” by widening them across columns.
+       Works in columns by letting them span full width of the column set. */
+    .featured{
+      column-span: all; /* supported in modern browsers; if ignored, still looks fine */
+    }
+
+    /* Responsive */
+    @media (max-width: 1100px){
+      .masonry{column-count:2}
+    }
+    @media (max-width: 700px){
       .brandName{font-size:42px}
-      .gallery{grid-template-columns: 1fr; gap:14px}
-      .p-sm, .p-md, .p-lg, .p-xl{grid-column: span 1; height: auto}
-      .tile{min-height: 0}
-      .tile img{height:auto}
+      .masonry{column-count:1}
     }
   </style>
 </head>
@@ -143,10 +142,9 @@
           A selection of original paintings. If you’re interested in a piece, email me and I’ll confirm availability and shipping.
         </p>
 
-        <div class="gallery">
-          <!-- You control the look by changing p-sm / p-md / p-lg / p-xl -->
-
-          <a class="tile p-xl" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Sailboats">
+        <div class="masonry">
+          <!-- If you want one “hero” at the top, add class="tile featured" -->
+          <a class="tile featured" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Sailboats">
             <span class="tag">Inquire</span>
             <img src="Sailboats.jpg" alt="Sailboats">
             <div class="cap">
@@ -155,31 +153,25 @@
             </div>
           </a>
 
-          <a class="tile p-md" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Coming%20Soon">
+          <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Coming%20Soon">
             <span class="tag">Coming soon</span>
             <img src="Sailboats.jpg" alt="Coming soon">
             <div class="cap"><b class="gradText">Coming soon</b><span>Oil • details soon</span></div>
           </a>
 
-          <a class="tile p-lg" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Coming%20Soon">
+          <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Coming%20Soon">
             <span class="tag">Coming soon</span>
             <img src="Sailboats.jpg" alt="Coming soon">
             <div class="cap"><b class="gradText">Coming soon</b><span>Oil • details soon</span></div>
           </a>
 
-          <a class="tile p-sm" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Coming%20Soon">
+          <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Coming%20Soon">
             <span class="tag">Coming soon</span>
             <img src="Sailboats.jpg" alt="Coming soon">
             <div class="cap"><b class="gradText">Coming soon</b><span>Oil • details soon</span></div>
           </a>
 
-          <a class="tile p-lg" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Coming%20Soon">
-            <span class="tag">Coming soon</span>
-            <img src="Sailboats.jpg" alt="Coming soon">
-            <div class="cap"><b class="gradText">Coming soon</b><span>Oil • details soon</span></div>
-          </a>
-
-          <a class="tile p-md" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Coming%20Soon">
+          <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Coming%20Soon">
             <span class="tag">Coming soon</span>
             <img src="Sailboats.jpg" alt="Coming soon">
             <div class="cap"><b class="gradText">Coming soon</b><span>Oil • details soon</span></div>
