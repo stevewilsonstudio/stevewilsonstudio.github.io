@@ -3,181 +3,98 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Galleries — Steve Wilson Studio</title>
+  <title>galleries — Steve Wilson</title>
 
-  <!-- Match your current site typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#070b12;
-      --card:rgba(255,255,255,0.06);
-      --card2:rgba(255,255,255,0.08);
-      --text:rgba(255,255,255,0.92);
-      --muted:rgba(255,255,255,0.70);
-      --muted2:rgba(255,255,255,0.55);
-      --pad:56px;
+      --bg:#ffffff; --text:#111;
+      --muted:rgba(0,0,0,0.62); --muted2:rgba(0,0,0,0.44);
+      --rule: rgba(0,0,0,0.12); --max: 980px;
     }
-
     *{box-sizing:border-box}
-    html,body{height:100%}
     body{
-      margin:0;
-      background: radial-gradient(1200px 700px at 15% 10%, rgba(90,140,210,0.18), transparent 55%),
-                  radial-gradient(900px 600px at 80% 35%, rgba(255,200,120,0.10), transparent 55%),
-                  var(--bg);
-      color:var(--text);
+      margin:0; background:var(--bg); color:var(--text);
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height:1.65;
     }
+    a{color:inherit;text-decoration:none}
 
-    a{color:inherit}
-
-    /* Top header */
-    .header{
-      padding: 28px var(--pad) 10px var(--pad);
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:24px;
+    .wrap{ max-width: 1320px; margin:0 auto; padding: 28px 18px 70px; }
+    header{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:18px;
+      padding-bottom:14px; border-bottom:1px solid var(--rule);
     }
-
-    .brand{
-      text-decoration:none;
-      display:inline-block;
+    .brand h1{
+      margin:0; font-family:"Libre Bodoni", serif; font-style: italic; font-weight:300;
+      font-size:46px; letter-spacing:0.02em; line-height:0.95; white-space:nowrap;
     }
+    .brand .sub{ margin:6px 0 0 2px; font-size:13px; color:var(--muted2); text-transform:lowercase; }
 
-    .brand-name{
-      font-family:"Libre Bodoni", serif;
-      font-style:italic;
-      font-weight:300;
-      font-size: 40px;
-      letter-spacing: 0.06em;
-      line-height: 1.05;
-      margin:0;
+    nav{ display:flex; flex-wrap:wrap; gap:18px; padding-bottom:4px; }
+    nav a{
+      font-size:15px; color: rgba(0,0,0,0.72); text-transform:lowercase; letter-spacing:0.06em;
+      padding-bottom:2px; border-bottom:1px solid transparent;
     }
+    nav a:hover{ border-bottom-color: rgba(0,0,0,0.35); }
+    nav a.active{ color: rgba(0,0,0,0.95); border-bottom-color: rgba(0,0,0,0.75); }
 
-    .brand-sub{
-      margin:8px 0 0 2px;
-      font-size: 13px;
-      color: var(--muted2);
-      letter-spacing: 0.02em;
+    .content{ max-width: var(--max); margin-top: 18px; }
+    .pageTitle{
+      margin: 18px 0 12px;
+      font-size:18px; font-weight:500; letter-spacing:0.08em; text-transform:lowercase;
+      color: rgba(0,0,0,0.85);
     }
-
-    .nav{
-      display:flex;
-      gap:22px;
-      align-items:center;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-      margin-bottom: 8px;
-    }
-
-    .nav a{
-      text-decoration:none;
-      text-transform:uppercase;
-      letter-spacing:0.18em;
-      font-size:12px;
-      color: var(--muted);
-      padding:8px 0;
-    }
-
-    .nav a:hover{ color: #fff; }
-    .nav a.active{ color:#fff; }
-
-    /* Main content */
-    .wrap{
-      padding: 18px var(--pad) 70px var(--pad);
-      max-width: 980px;
-    }
-
-    .card{
-      background: linear-gradient(180deg, var(--card2), var(--card));
-      border: 1px solid rgba(255,255,255,0.10);
-      padding: 28px;
-    }
-
-    h1{
-      margin: 0 0 12px 0;
-      font-size: 26px;
-      letter-spacing: 0.02em;
-      font-weight: 500;
-    }
-
-    p{
-      margin: 0 0 14px 0;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.65;
-      max-width: 72ch;
-    }
-
+    p{ margin:0 0 14px 0; color: var(--muted); font-size:16px; }
     .email{
-      display:inline-block;
-      margin-top: 6px;
-      color: #fff;
-      text-decoration:none;
-      border-bottom: 1px solid rgba(255,255,255,0.35);
-      padding-bottom: 2px;
+      border-bottom: 1px solid rgba(0,0,0,0.35);
+      padding-bottom: 1px;
     }
-    .email:hover{
-      border-bottom-color: rgba(255,255,255,0.75);
-    }
+    .email:hover{ border-bottom-color: rgba(0,0,0,0.75); }
 
-    .footer{
-      padding: 22px var(--pad);
-      color: rgba(255,255,255,0.45);
-      font-size: 12px;
-    }
-
-    @media (max-width: 760px){
-      :root{ --pad: 24px; }
-      .brand-name{ font-size: 34px; }
-      .wrap{ padding-top: 14px; }
-      .card{ padding: 20px; }
+    @media (max-width: 700px){
+      header{ align-items:flex-start; flex-direction:column; }
+      .brand h1{ font-size:40px; white-space:normal; }
     }
   </style>
 </head>
 
 <body>
-  <header class="header">
-    <a class="brand" href="index.html" aria-label="Back to home">
-      <h2 class="brand-name">Steve Wilson</h2>
-      <div class="brand-sub">Studio</div>
-    </a>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <h1><a href="index.html">Steve Wilson</a></h1>
+        <div class="sub">studio</div>
+      </div>
 
-    <nav class="nav" aria-label="Site navigation">
-      <a href="index.html">Home</a>
-      <a href="paintings.html">Paintings</a>
-      <a href="prints.html">Prints</a>
-      <a href="workshops.html">Workshops &amp; Exhibitions</a>
-      <a class="active" href="galleries.html">Galleries</a>
-      <a href="about.html">About</a>
-    </nav>
-  </header>
+      <nav aria-label="primary">
+        <a href="index.html">home</a>
+        <a href="paintings.html">paintings</a>
+        <a href="prints.html">prints</a>
+        <a href="workshops.html">workshops &amp; exhibitions</a>
+        <a class="active" href="galleries.html">galleries</a>
+        <a href="about.html">about</a>
+        <a href="contact.html">contact</a>
+      </nav>
+    </header>
 
-  <main class="wrap">
-    <section class="card">
-      <h1>Gallery Representation</h1>
+    <div class="content">
+      <div class="pageTitle">galleries</div>
+
       <p>
         I’m not currently represented by a gallery. I welcome inquiries from galleries and curators interested in representing my work,
         and I’m actively exploring the right long-term fit. If my paintings align with your program, I’d be glad to share a current
         portfolio, availability, and pricing.
       </p>
+
       <p>
         Please reach out at
         <a class="email" href="mailto:stevenrwilson7@icloud.com">stevenrwilson7@icloud.com</a>.
       </p>
-    </section>
-  </main>
-
-  <footer class="footer">
-    © <span id="y"></span> Steve Wilson Studio
-  </footer>
-
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
+    </div>
+  </div>
 </body>
 </html>
