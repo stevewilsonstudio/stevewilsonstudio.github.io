@@ -3,144 +3,363 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Prints — Steve Wilson Studio</title>
+  <title>prints — Steve Wilson</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#0f1115; --text:#f2f4f8; --muted:rgba(255,255,255,0.72);
-      --line:rgba(255,255,255,0.14); --card:rgba(20,24,36,0.70);
-      --max:1120px;
+      --bg:#ffffff;
+      --text:#111111;
+      --muted:rgba(0,0,0,0.62);
+      --muted2:rgba(0,0,0,0.42);
+      --link:rgba(0,0,0,0.72);
+      --max:1320px;
 
-      --coolA: rgba(120,190,255,1);
-      --coolB: rgba(235,248,255,0.98);
-      --warm: rgba(255,210,125,1);
-      --grad: linear-gradient(90deg, var(--coolA) 0%, var(--coolB) 55%, var(--warm) 100%);
-
-      --radius:0px;
+      --radius:0px; /* sharp corners */
+      --rule: rgba(0,0,0,0.10);
+      --soft: rgba(0,0,0,0.05);
     }
 
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:var(--bg);
       color:var(--text);
-      background:
-        radial-gradient(1200px 700px at 20% -10%, rgba(90,160,255,0.18), transparent 60%),
-        radial-gradient(900px 500px at 90% 0%, rgba(255,208,140,0.12), transparent 55%),
-        var(--bg);
-      line-height:1.6;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height:1.55;
     }
     a{color:inherit; text-decoration:none}
-    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 64px}
-    .gradText{background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent}
 
-    header{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; padding-bottom:18px}
-    .brandName{margin:0; line-height:1.0; font-weight:800; letter-spacing:0.2px; font-size:46px}
-    .brandTag{margin:6px 0 0; font-size:14px; color:var(--muted)}
-    nav{display:flex; gap:10px; flex-wrap:wrap; padding-bottom:3px}
-    nav a{font-size:14px; color:rgba(255,255,255,0.78); padding:8px 10px; border-radius:var(--radius); border:1px solid transparent}
-    nav a:hover{border-color:var(--line); background:rgba(255,255,255,0.05);}
-
-    .card{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:22px;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px 18px 70px;
     }
 
-    h1{margin:0 0 10px; font-size:26px; font-weight:800}
-    .intro{margin:0; color:var(--muted); max-width:75ch}
+    header{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:18px;
+      padding-bottom: 14px;
+    }
+
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+
+    .brandName{
+      margin:0;
+      font-family:"Libre Bodoni", serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 46px;
+      letter-spacing: 0.2px;
+      line-height: 0.95;
+    }
+
+    .tagline{
+      margin:0;
+      font-size: 13px;
+      color: var(--muted2);
+      letter-spacing: 0.6px;
+      text-transform: lowercase;
+    }
+
+    nav{
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+      padding-bottom: 6px;
+    }
+
+    nav a{
+      font-size: 15px;
+      color: var(--link);
+      text-transform: lowercase;
+      letter-spacing: 0.2px;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 2px;
+    }
+    nav a:hover{ border-bottom-color: rgba(0,0,0,0.35); }
+    nav a.active{
+      color: rgba(0,0,0,0.95);
+      border-bottom-color: rgba(0,0,0,0.75);
+    }
 
     .grid{
-      margin-top:14px;
+      margin-top: 22px;
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:14px;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 36px;
+      align-items:start;
     }
 
-    .tile{
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      overflow:hidden;
-      background:rgba(255,255,255,0.02);
+    h1{
+      margin: 0 0 10px 0;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: 0.1px;
+      text-transform: lowercase;
     }
-    .tile img{width:100%; height:230px; object-fit:cover; display:block}
-    .cap{padding:12px; color:var(--muted); font-size:13px}
-    .cap b{display:block; margin-bottom:4px; font-size:14px}
 
-    .twoCol{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px}
-    .note{margin:0; color:var(--muted)}
+    p{
+      margin: 0 0 14px 0;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 75ch;
+    }
 
-    @media (max-width: 900px){
-      .brandName{font-size:38px}
-      .grid{grid-template-columns:1fr}
-      .twoCol{grid-template-columns:1fr}
-      .tile img{height:240px}
+    .rule{
+      height:1px;
+      background: var(--rule);
+      margin: 18px 0;
+    }
+
+    /* Print listing cards (simple, clean) */
+    .prints{
+      display:flex;
+      flex-direction:column;
+      gap: 22px;
+    }
+
+    .printCard{
+      padding: 18px 0;
+      border-top: 1px solid var(--rule);
+    }
+    .printCard:first-child{ border-top: none; padding-top: 0; }
+
+    .printTitle{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:baseline;
+      justify-content:space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .printTitle h2{
+      margin:0;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+    .status{
+      font-size: 13px;
+      color: var(--muted2);
+      text-transform: lowercase;
+      letter-spacing: 0.2px;
+    }
+
+    .meta{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 22px;
+      margin-top: 10px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .meta b{
+      color: rgba(0,0,0,0.78);
+      font-weight: 600;
+    }
+
+    .ctaRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding: 10px 12px;
+      border: 1px solid rgba(0,0,0,0.22);
+      border-radius: var(--radius);
+      font-size: 14px;
+      letter-spacing: 0.2px;
+      color: rgba(0,0,0,0.85);
+      background: #fff;
+    }
+    .btn:hover{
+      background: rgba(0,0,0,0.03);
+    }
+
+    /* Sidebar */
+    aside{
+      border-left: 1px solid var(--soft);
+      padding-left: 22px;
+    }
+
+    .asideBlock{
+      padding: 14px 0;
+      border-top: 1px solid var(--rule);
+    }
+    .asideBlock:first-child{ border-top: none; padding-top: 0; }
+
+    .asideBlock h3{
+      margin:0 0 8px 0;
+      font-size: 14px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: rgba(0,0,0,0.75);
+    }
+
+    ul{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    li{ margin: 6px 0; }
+
+    .email{
+      border-bottom: 1px solid rgba(0,0,0,0.35);
+      padding-bottom: 1px;
+    }
+    .email:hover{
+      border-bottom-color: rgba(0,0,0,0.75);
+    }
+
+    @media (max-width: 980px){
+      header{align-items:flex-start; flex-direction:column; gap:10px}
+      .brandName{font-size: 40px}
+      .grid{grid-template-columns: 1fr; gap: 26px;}
+      aside{border-left:none; padding-left:0;}
     }
   </style>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <div class="wrap">
     <header>
-      <div>
-        <p class="brandName"><a class="gradText" href="index.html">Steve Wilson Studio</a></p>
-        <p class="brandTag">Original paintings &amp; fine art prints</p>
+      <div class="brand">
+        <h1 class="brandName"><a href="index.html">Steve Wilson</a></h1>
+        <p class="tagline">original paintings &amp; fine art prints</p>
       </div>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="paintings.html">Paintings</a>
-        <a href="prints.html">Prints</a>
-        <a href="about.html">About</a>
-        <a href="index.html#contact">Contact</a>
+
+      <nav aria-label="primary">
+        <a href="index.html">home</a>
+        <a href="paintings.html">paintings</a>
+        <a class="active" href="prints.html">prints</a>
+        <a href="workshops.html">workshops &amp; exhibitions</a>
+        <a href="galleries.html">galleries</a>
+        <a href="about.html">about</a>
+        <a href="contact.html">contact</a>
       </nav>
     </header>
 
-    <main>
-      <section class="card">
-        <h1 class="gradText">Fine Art Prints</h1>
-        <p class="intro">
-          If you’d like to live with the work without purchasing an original, I offer high-quality prints in a few standard sizes.
-          Each print is inspected, packed, and shipped by me.
+    <div class="grid">
+      <main>
+        <h1>prints</h1>
+        <p>
+          I offer a limited selection of fine art prints. To order, email me the print name(s) and size(s) you’d like.
+          I’ll reply with pricing, current availability, and an estimated ship date.
         </p>
 
-        <div class="grid">
-          <div class="tile">
-            <img src="Sailboats.jpg" alt="Sailboats print">
-            <div class="cap"><b class="gradText">Sailboats</b>Archival print • multiple sizes</div>
-          </div>
-          <div class="tile">
-            <img src="Cumberland.jpg" alt="Coming soon">
-            <div class="cap"><b style="color: rgba(255,210,125,1);">Coming soon</b>Archival print • multiple sizes</div>
-          </div>
-          <div class="tile">
-            <img src="Breckenridge.jpg" alt="Coming soon">
-            <div class="cap"><b style="color: rgba(255,210,125,1);">Coming soon</b>Archival print • multiple sizes</div>
-          </div>
+        <div class="rule"></div>
+
+        <section class="prints" aria-label="Available prints">
+
+          <!-- You can add / remove items anytime. Start with a few. -->
+          <article class="printCard">
+            <div class="printTitle">
+              <h2>Docks at St. Simons</h2>
+              <span class="status">available as print</span>
+            </div>
+            <p>From the original painting (acrylic on cradled birch).</p>
+            <div class="meta">
+              <div><b>Sizes</b> 8&quot;×10&quot;, 11&quot;×14&quot;, 16&quot;×20&quot;</div>
+              <div><b>Paper</b> archival matte (museum-quality)</div>
+              <div><b>Border</b> optional white border</div>
+              <div><b>Shipping</b> ships flat (small) or rolled (large)</div>
+            </div>
+            <div class="ctaRow">
+              <a class="btn" href="mailto:stevenrwilson7@icloud.com?subject=Print%20Order%20-%20Docks%20at%20St.%20Simons&body=Hi%20Steve%2C%0A%0AI%E2%80%99d%20like%20to%20order%20a%20print%20of%20%22Docks%20at%20St.%20Simons%22.%0A%0ASize%3A%20%0AQuantity%3A%20%0AShipping%20city%2Fstate%3A%20%0A%0AThank%20you%2C%0A">email to order</a>
+            </div>
+          </article>
+
+          <article class="printCard">
+            <div class="printTitle">
+              <h2>Keeneland</h2>
+              <span class="status">available as print</span>
+            </div>
+            <p>Fine art print from the original painting.</p>
+            <div class="meta">
+              <div><b>Sizes</b> 8&quot;×10&quot;, 11&quot;×14&quot;, 16&quot;×20&quot;</div>
+              <div><b>Paper</b> archival matte</div>
+              <div><b>Border</b> optional white border</div>
+              <div><b>Shipping</b> ships flat or rolled</div>
+            </div>
+            <div class="ctaRow">
+              <a class="btn" href="mailto:stevenrwilson7@icloud.com?subject=Print%20Order%20-%20Keeneland&body=Hi%20Steve%2C%0A%0AI%E2%80%99d%20like%20to%20order%20a%20print%20of%20%22Keeneland%22.%0A%0ASize%3A%20%0AQuantity%3A%20%0AShipping%20city%2Fstate%3A%20%0A%0AThank%20you%2C%0A">email to order</a>
+            </div>
+          </article>
+
+          <article class="printCard">
+            <div class="printTitle">
+              <h2>Breckenridge</h2>
+              <span class="status">available as print</span>
+            </div>
+            <p>Fine art print from the original painting.</p>
+            <div class="meta">
+              <div><b>Sizes</b> 8&quot;×10&quot;, 11&quot;×14&quot;, 16&quot;×20&quot;</div>
+              <div><b>Paper</b> archival matte</div>
+              <div><b>Border</b> optional white border</div>
+              <div><b>Shipping</b> ships flat or rolled</div>
+            </div>
+            <div class="ctaRow">
+              <a class="btn" href="mailto:stevenrwilson7@icloud.com?subject=Print%20Order%20-%20Breckenridge&body=Hi%20Steve%2C%0A%0AI%E2%80%99d%20like%20to%20order%20a%20print%20of%20%22Breckenridge%22.%0A%0ASize%3A%20%0AQuantity%3A%20%0AShipping%20city%2Fstate%3A%20%0A%0AThank%20you%2C%0A">email to order</a>
+            </div>
+          </article>
+
+          <!-- Add more print cards as you decide what you want to offer -->
+
+        </section>
+      </main>
+
+      <aside>
+        <div class="asideBlock">
+          <h3>ordering</h3>
+          <ul>
+            <li>Email the print name, size, and quantity.</li>
+            <li>I’ll confirm pricing, availability, and shipping.</li>
+            <li>Payment and shipping details will be provided by email.</li>
+          </ul>
         </div>
 
-        <div class="twoCol">
-          <div class="card" style="padding:16px;">
-            <p class="note"><span class="gradText" style="font-weight:800;">Paper</span><br>
-              Archival, acid-free fine art paper with a matte finish.</p>
-          </div>
-          <div class="card" style="padding:16px;">
-            <p class="note"><span class="gradText" style="font-weight:800;">Ordering</span><br>
-              For now, email me with the print name + size and your shipping address. I’ll reply with total price and shipping.</p>
-          </div>
+        <div class="asideBlock">
+          <h3>paper &amp; quality</h3>
+          <ul>
+            <li>Archival inks and museum-quality paper.</li>
+            <li>Color may vary slightly by monitor.</li>
+            <li>Optional white border available.</li>
+          </ul>
         </div>
 
-        <p class="note" style="margin-top:14px;">
-          Email: <a href="mailto:stevenrwilson7@icloud.com"><span class="gradText" style="font-weight:800;">stevenrwilson7@icloud.com</span></a>
-        </p>
-      </section>
-    </main>
+        <div class="asideBlock">
+          <h3>shipping</h3>
+          <ul>
+            <li>Small prints ship flat with protective packaging.</li>
+            <li>Larger prints may ship rolled in a tube.</li>
+            <li>Delivery times vary by location.</li>
+          </ul>
+        </div>
+
+        <div class="asideBlock">
+          <h3>questions</h3>
+          <p style="margin:0; color:var(--muted); font-size:14px;">
+            Email me anytime at
+            <a class="email" href="mailto:stevenrwilson7@icloud.com">stevenrwilson7@icloud.com</a>.
+          </p>
+        </div>
+      </aside>
+    </div>
   </div>
 </body>
 </html>
