@@ -7,18 +7,17 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --bg:#ffffff;
-      --text:#111111;
+      --text:#111;
       --muted:rgba(0,0,0,0.62);
-      --muted2:rgba(0,0,0,0.42);
-      --link:rgba(0,0,0,0.72);
-      --max:1320px;
-
-      --radius:0px;
+      --muted2:rgba(0,0,0,0.44);
+      --rule: rgba(0,0,0,0.12);
+      --max: 1320px;
+      --radius: 0px; /* sharp corners */
     }
 
     *{box-sizing:border-box}
@@ -29,7 +28,7 @@
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
       line-height:1.55;
     }
-    a{color:inherit; text-decoration:none}
+    a{color:inherit;text-decoration:none}
 
     .wrap{
       max-width: var(--max);
@@ -43,46 +42,41 @@
       justify-content:space-between;
       gap:18px;
       padding-bottom: 14px;
+      border-bottom: 1px solid var(--rule);
     }
 
-    .brand{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-    }
-
-    .brandName{
+    .brand h1{
       margin:0;
       font-family:"Libre Bodoni", serif;
       font-style: italic;
-      font-weight: 500;
+      font-weight: 300;
       font-size: 46px;
-      letter-spacing: 0.2px;
+      letter-spacing: 0.02em;
       line-height: 0.95;
+      text-transform:none;
+      white-space: nowrap;
     }
-
-    .tagline{
-      margin:0;
+    .brand .sub{
+      margin:6px 0 0 2px;
       font-size: 13px;
       color: var(--muted2);
-      letter-spacing: 0.6px;
       text-transform: lowercase;
+      letter-spacing: 0.02em;
     }
 
     nav{
       display:flex;
       flex-wrap:wrap;
       gap:18px;
-      padding-bottom: 6px;
+      padding-bottom: 4px;
     }
-
     nav a{
       font-size: 15px;
-      color: var(--link);
+      color: rgba(0,0,0,0.72);
       text-transform: lowercase;
-      letter-spacing: 0.2px;
-      border-bottom: 1px solid transparent;
+      letter-spacing: 0.06em;
       padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
     }
     nav a:hover{ border-bottom-color: rgba(0,0,0,0.35); }
     nav a.active{
@@ -90,75 +84,69 @@
       border-bottom-color: rgba(0,0,0,0.75);
     }
 
-    /* Masonry columns (tight tiling like before) */
+    .pageTitle{
+      margin: 18px 0 12px;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
+      color: rgba(0,0,0,0.85);
+    }
+
+    /* Masonry layout */
     .masonry{
-      margin-top: 18px;
       column-count: 3;
-      column-gap: 18px;
+      column-gap: 14px;
     }
 
     .tile{
-      display:block;
       break-inside: avoid;
-      margin: 0 0 18px;
+      margin: 0 0 14px;
+    }
+
+    .tile a{ display:block; }
+
+    .imgWrap{
       position:relative;
       overflow:hidden;
       border-radius: var(--radius);
-      background: transparent;
+      background: #f2f2f2;
     }
 
-    .tile img{
+    .imgWrap img{
       width:100%;
       height:auto;
       display:block;
       border-radius: var(--radius);
     }
 
-    /* Caption overlay — subtle and consistent */
-    .cap{
-      position:absolute;
-      left:0; right:0; bottom:0;
-      padding: 10px 12px;
-      background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.86) 58%, rgba(255,255,255,0.92) 100%);
+    .caption{
+      margin-top: 8px;
+      display:flex;
+      flex-direction:column;
+      gap:2px;
     }
 
-    .cap b{
-      display:block;
+    .title{
       font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.2px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      color: rgba(0,0,0,0.92);
+      text-transform:none;
     }
-    .cap span{
-      display:block;
+
+    .details{
       font-size: 13px;
       color: var(--muted);
     }
 
-    .tag{
-      position:absolute;
-      top:10px; left:10px;
-      padding: 6px 10px;
-      border-radius: 0;
-      background: rgba(255,255,255,0.88);
-      border: 1px solid rgba(0,0,0,0.10);
-      font-size: 12px;
-      color: rgba(0,0,0,0.72);
-    }
-
-    /* small hover */
-    .tile:hover img{
-      transform: scale(1.01);
-      transition: transform 180ms ease;
-    }
-
     @media (max-width: 1100px){
-      header{align-items:flex-start; flex-direction:column; gap:10px}
-      .brandName{font-size: 40px}
-      .masonry{column-count: 2;}
+      .masonry{ column-count: 2; }
+      .brand h1{ font-size: 40px; white-space: normal; }
     }
-    @media (max-width: 640px){
-      .brandName{font-size: 36px}
-      .masonry{column-count: 1;}
+    @media (max-width: 700px){
+      .masonry{ column-count: 1; }
+      header{ align-items:flex-start; flex-direction:column; }
     }
   </style>
 </head>
@@ -167,8 +155,8 @@
   <div class="wrap">
     <header>
       <div class="brand">
-        <h1 class="brandName"><a href="index.html">Steve Wilson</a></h1>
-        <p class="tagline">original paintings &amp; fine art prints</p>
+        <h1><a href="index.html">Steve Wilson</a></h1>
+        <div class="sub">studio</div>
       </div>
 
       <nav aria-label="primary">
@@ -182,170 +170,106 @@
       </nav>
     </header>
 
-    <section class="masonry" aria-label="Paintings gallery">
+    <div class="pageTitle">paintings</div>
 
-      <!-- Docks at St. Simons (was Sailboats) -->
-      <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Docks%20at%20St.%20Simons">
-        <span class="tag">inquire</span>
-        <img src="Sailboats.jpg" alt="Docks at St. Simons">
-        <div class="cap">
-          <b>Docks at St. Simons</b>
-          <span>16&quot;×20&quot; • acrylic on cradled birch</span>
-        </div>
-      </a>
+    <!-- Add/Remove tiles here. Use your uploaded filenames exactly. -->
+    <section class="masonry" aria-label="Paintings masonry grid">
 
-      <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Beach%20Entry">
-        <span class="tag">inquire</span>
-        <img src="Beach-Entry.jpg" alt="Beach Entry">
-        <div class="cap">
-          <b>Beach Entry</b>
-          <span>details coming soon</span>
-        </div>
-      </a>
+      <div class="tile">
+        <a href="Sailboats.jpg" target="_blank" rel="noopener">
+          <div class="imgWrap">
+            <img src="Sailboats.jpg" alt="Docks at St. Simons">
+          </div>
+          <div class="caption">
+            <div class="title">Docks at St. Simons</div>
+            <div class="details">16&quot;×20&quot; • acrylic on cradled birch</div>
+          </div>
+        </a>
+      </div>
 
-      <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Breakers">
-        <span class="tag">inquire</span>
-        <img src="Breakers.jpg" alt="Breakers">
-        <div class="cap">
-          <b>Breakers</b>
-          <span>&times;48&quot; • acrylic on canvas</span>
-        </div>
-      </a>
+      <div class="tile">
+        <a href="Breakers.jpg" target="_blank" rel="noopener">
+          <div class="imgWrap">
+            <img src="Breakers.jpg" alt="Breakers">
+          </div>
+          <div class="caption">
+            <div class="title">Breakers</div>
+            <div class="details">36&quot;×48&quot; • acrylic on canvas</div>
+          </div>
+        </a>
+      </div>
 
-      <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Breckenridge">
-        <span class="tag">inquire</span>
-        <img src="Breckenridge.jpg" alt="Breckenridge">
-        <div class="cap">
-          <b>Breckenridge</b>
-          <span>details coming soon</span>
-        </div>
-      </a>
+      <div class="tile">
+        <a href="Tulips.jpg" target="_blank" rel="noopener">
+          <div class="imgWrap">
+            <img src="Tulips.jpg" alt="Tulips">
+          </div>
+          <div class="caption">
+            <div class="title">Tulips</div>
+            <div class="details">20&quot;×30&quot; • oil on canvas</div>
+          </div>
+        </a>
+      </div>
 
-      <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Butterfly">
-        <span class="tag">inquire</span>
-        <img src="Butterfly.jpg" alt="Butterfly">
-        <div class="cap">
-          <b>Butterfly</b>
-          <span>details coming soon</span>
-        </div>
-      </a>
+      <div class="tile">
+        <a href="Cumberland.jpg" target="_blank" rel="noopener">
+          <div class="imgWrap">
+            <img src="Cumberland.jpg" alt="Cumberland">
+          </div>
+          <div class="caption">
+            <div class="title">Cumberland</div>
+            <div class="details">details coming soon</div>
+          </div>
+        </a>
+      </div>
 
-      <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Cashiers">
-        <span class="tag">inquire</span>
-        <img src="Cashiers.jpg" alt="Cashiers">
-        <div class="cap">
-          <b>Cashiers</b>
-          <span>details coming soon</span>
-        </div>
-      </a>
+      <div class="tile">
+        <a href="Breckenridge.jpg" target="_blank" rel="noopener">
+          <div class="imgWrap">
+            <img src="Breckenridge.jpg" alt="Breckenridge">
+          </div>
+          <div class="caption">
+            <div class="title">Breckenridge</div>
+            <div class="details">details coming soon</div>
+          </div>
+        </a>
+      </div>
 
-      <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Cumberland">
-        <span class="tag">inquire</span>
-        <img src="Cumberland.jpg" alt="Cumberland">
-        <div class="cap">
-          <b>Cumberland</b>
-          <span>details coming soon</span>
-        </div>
-      </a>
+      <div class="tile">
+        <a href="Keeneland.jpg" target="_blank" rel="noopener">
+          <div class="imgWrap">
+            <img src="Keeneland.jpg" alt="Keeneland">
+          </div>
+          <div class="caption">
+            <div class="title">Keeneland</div>
+            <div class="details">details coming soon</div>
+          </div>
+        </a>
+      </div>
 
-      <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Dance">
-        <span class="tag">inquire</span>
-        <img src="Dance.jpg" alt="Dance">
-        <div class="cap">
-          <b>Dance</b>
-          <span>details coming soon</span>
-        </div>
-      </a>
+      <div class="tile">
+        <a href="Wailea.jpg" target="_blank" rel="noopener">
+          <div class="imgWrap">
+            <img src="Wailea.jpg" alt="Wailea">
+          </div>
+          <div class="caption">
+            <div class="title">Wailea</div>
+            <div class="details">details coming soon</div>
+          </div>
+        </a>
+      </div>
 
-      <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Golden%20Hour%20Creek">
-        <span class="tag">inquire</span>
-        <img src="Golden-Hour-Creek.jpg" alt="Golden Hour Creek">
-        <div class="cap">
-          <b>Golden Hour Creek</b>
-          <span>details coming soon</span>
-        </div>
-      </a>
-
-      <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Homeplace">
-        <span class="tag">inquire</span>
-        <img src="Homeplace.jpg" alt="Homeplace">
-        <div class="cap">
-          <b>Homeplace</b>
-          <span>details coming soon</span>
-        </div>
-      </a>
-
-      <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Keeneland%20Bath">
-        <span class="tag">inquire</span>
-        <img src="Keeneland-Bath.jpg" alt="Keeneland Bath">
-        <div class="cap">
-          <b>Keeneland Bath</b>
-          <span>details coming soon</span>
-        </div>
-      </a>
-
-      <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Keeneland">
-        <span class="tag">inquire</span>
-        <img src="Keeneland.jpg" alt="Keeneland">
-        <div class="cap">
-          <b>Keeneland</b>
-          <span>details coming soon</span>
-        </div>
-      </a>
-
-      <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Love">
-        <span class="tag">inquire</span>
-        <img src="Love.jpg" alt="Love">
-        <div class="cap">
-          <b>Love</b>
-          <span>details coming soon</span>
-        </div>
-      </a>
-
-      <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Sedona">
-        <span class="tag">inquire</span>
-        <img src="Sedona.jpg" alt="Sedona">
-        <div class="cap">
-          <b>Sedona</b>
-          <span>details coming soon</span>
-        </div>
-      </a>
-
-      <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Torii">
-        <span class="tag">inquire</span>
-        <img src="Torii.jpg" alt="Torii">
-        <div class="cap">
-          <b>Torii</b>
-          <span>details coming soon</span>
-        </div>
-      </a>
-
-      <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Tulips">
-        <span class="tag">inquire</span>
-        <img src="Tulips.jpg" alt="Tulips">
-        <div class="cap">
-          <b>Tulips</b>
-          <span>20&quot;×30&quot; • oil on canvas</span>
-        </div>
-      </a>
-
-      <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Wailea">
-        <span class="tag">inquire</span>
-        <img src="Wailea.jpg" alt="Wailea">
-        <div class="cap">
-          <b>Wailea</b>
-          <span>details coming soon</span>
-        </div>
-      </a>
-
-      <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Winter">
-        <span class="tag">inquire</span>
-        <img src="Winter.jpg" alt="Winter">
-        <div class="cap">
-          <b>Winter</b>
-          <span>details coming soon</span>
-        </div>
-      </a>
+      <div class="tile">
+        <a href="Golden-Hour-Creek.jpg" target="_blank" rel="noopener">
+          <div class="imgWrap">
+            <img src="Golden-Hour-Creek.jpg" alt="Golden Hour Creek">
+          </div>
+          <div class="caption">
+            <div class="title">Golden Hour Creek</div>
+            <div class="details">details coming soon</div>
+          </div>
+        </a>
+      </div>
 
     </section>
   </div>
