@@ -3,121 +3,189 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Paintings — Steve Wilson</title>
+  <title>paintings — Steve Wilson</title>
 
+  <!-- Classic serif italic + clean sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#0f1115; --text:#f2f4f8; --muted:rgba(255,255,255,0.72);
-      --line:rgba(255,255,255,0.14); --card:rgba(20,24,36,0.70);
-      --max:1240px;
+      --bg:#ffffff;
+      --text:#111111;
+      --muted:rgba(0,0,0,0.60);
+      --muted2:rgba(0,0,0,0.42);
+      --link:rgba(0,0,0,0.72);
 
-      --coolA: rgba(120,190,255,1);
-      --coolB: rgba(235,248,255,0.98);
-      --warm: rgba(255,210,125,1);
-      --grad: linear-gradient(90deg, var(--coolA) 0%, var(--coolB) 55%, var(--warm) 100%);
+      --max:1320px;
 
-      --radius:0px;
+      /* warm accent (optional, used for subtle hover + inquire tag) */
+      --warm:#d8a24a;
+
+      --radius:0px; /* sharp corners */
     }
 
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:var(--bg);
       color:var(--text);
-      background:
-        radial-gradient(1200px 700px at 20% -10%, rgba(90,160,255,0.18), transparent 60%),
-        radial-gradient(900px 500px at 90% 0%, rgba(255,208,140,0.12), transparent 55%),
-        var(--bg);
-      line-height:1.6;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height:1.55;
     }
     a{color:inherit; text-decoration:none}
-    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 64px}
 
-    .gradText{background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent}
-    .warmText{color: var(--warm);}
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px 18px 70px;
+    }
 
-    header{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; padding-bottom:18px}
+    /* Top header like Svob: name + small tagline + lowercase nav */
+    header{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:18px;
+      padding-bottom: 14px;
+    }
+
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+
     .brandName{
       margin:0;
-      line-height:1.0;
-      font-size:52px;
       font-family:"Libre Bodoni", serif;
       font-style: italic;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-    }
-    .brandTag{margin:6px 0 0; font-size:14px; color:var(--muted)}
-
-    nav{display:flex; gap:10px; flex-wrap:wrap; padding-bottom:3px}
-    nav a{font-size:14px; color:rgba(255,255,255,0.78); padding:8px 10px; border-radius:var(--radius); border:1px solid transparent}
-    nav a:hover{border-color:var(--line); background:rgba(255,255,255,0.05);}
-
-    .card{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:22px;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+      font-weight: 500;
+      font-size: 46px;
+      letter-spacing: 0.2px;
+      line-height: 0.95;
     }
 
-    h1{margin:0 0 10px; font-size:26px; font-weight:800; letter-spacing:-0.3px}
-    .intro{margin:0; color:var(--muted); max-width:85ch}
-
-    /* Masonry columns */
-    .masonry{
-      margin-top:18px;
-      column-count: 3;
-      column-gap: 14px;
+    .tagline{
+      margin:0;
+      font-size: 13px;
+      color: var(--muted2);
+      letter-spacing: 0.6px;
+      text-transform: lowercase;
     }
 
+    nav{
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+      padding-bottom: 6px;
+    }
+
+    nav a{
+      font-size: 15px;
+      color: var(--link);
+      text-transform: lowercase;
+      letter-spacing: 0.2px;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 2px;
+    }
+    nav a:hover{
+      border-bottom-color: rgba(0,0,0,0.35);
+    }
+    nav a.active{
+      color: rgba(0,0,0,0.95);
+      border-bottom-color: rgba(0,0,0,0.75);
+    }
+
+    /* Gallery grid: "fits together" feel */
+    .gallery{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    /* No borders on paintings, white page */
     .tile{
-      break-inside: avoid;
-      margin: 0 0 14px;
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      overflow:hidden;
-      background:rgba(255,255,255,0.02);
       position:relative;
-      box-shadow: 0 10px 26px rgba(0,0,0,0.25);
-      display:block;
+      overflow:hidden;
+      border-radius: var(--radius);
+      background: transparent;
     }
 
     .tile img{
       width:100%;
       height:auto;
       display:block;
-      border-radius:0;
+      border-radius: var(--radius);
     }
 
+    /* subtle caption (bottom left) */
     .cap{
-      position:absolute; left:0; right:0; bottom:0;
-      padding:12px;
-      background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.75) 70%);
+      position:absolute;
+      left:0; right:0; bottom:0;
+      padding: 10px 12px;
+      background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.86) 55%, rgba(255,255,255,0.92) 100%);
     }
-    .cap b{display:block; font-size:15px; margin-bottom:2px}
-    .cap span{display:block; font-size:13px; color:rgba(255,255,255,0.70)}
 
+    .cap b{
+      display:block;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+    .cap span{
+      display:block;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* optional: little "inquire" tag */
     .tag{
       position:absolute;
       top:10px; left:10px;
-      padding:6px 10px;
-      border-radius:0;
-      border:1px solid rgba(255,255,255,0.18);
-      background: rgba(0,0,0,0.35);
-      font-size:12px;
-      color: rgba(255,255,255,0.85);
-      backdrop-filter: blur(6px);
+      padding: 6px 10px;
+      border-radius: 0;
+      background: rgba(255,255,255,0.88);
+      border: 1px solid rgba(0,0,0,0.10);
+      font-size: 12px;
+      color: rgba(0,0,0,0.72);
     }
 
-    @media (max-width: 1100px){ .masonry{column-count:2} }
-    @media (max-width: 700px){
-      .masonry{column-count:1}
-      .brandName{font-size:42px}
+    /* Hover: very subtle */
+    .tile:hover img{
+      transform: scale(1.01);
+      transition: transform 180ms ease;
+    }
+
+    /* ---- Layout sizes (Svob-like variety) ----
+       Adjust these spans any time to get a better "puzzle" feel.
+    */
+    .w6{grid-column: span 6;}
+    .w5{grid-column: span 5;}
+    .w4{grid-column: span 4;}
+    .w7{grid-column: span 7;}
+    .w8{grid-column: span 8;}
+    .w12{grid-column: span 12;}
+
+    @media (max-width: 1100px){
+      .brandName{font-size: 40px}
+      .gallery{grid-template-columns: repeat(8, 1fr)}
+      .w8{grid-column: span 8;}
+      .w7{grid-column: span 8;}
+      .w6{grid-column: span 8;}
+      .w5{grid-column: span 4;}
+      .w4{grid-column: span 4;}
+      header{align-items:flex-start; flex-direction:column; gap:10px}
+      nav{gap:14px}
+    }
+
+    @media (max-width: 640px){
+      .gallery{grid-template-columns: repeat(4, 1fr)}
+      .w12,.w8,.w7,.w6,.w5,.w4{grid-column: span 4;}
+      .brandName{font-size: 36px}
     }
   </style>
 </head>
@@ -125,117 +193,96 @@
 <body>
   <div class="wrap">
     <header>
-      <div>
-        <p class="brandName"><a class="gradText" href="index.html">Steve Wilson</a></p>
-        <p class="brandTag">Original paintings &amp; fine art prints</p>
+      <div class="brand">
+        <h1 class="brandName"><a href="index.html">Steve Wilson</a></h1>
+        <p class="tagline">original paintings &amp; fine art prints</p>
       </div>
 
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="paintings.html">Paintings</a>
-        <a href="prints.html">Prints</a>
-        <a href="about.html">About</a>
+      <nav aria-label="primary">
+        <a href="index.html">home</a>
+        <a class="active" href="paintings.html">paintings</a>
+        <a href="prints.html">prints</a>
+        <a href="workshops.html">workshops &amp; exhibitions</a>
+        <a href="galleries.html">galleries</a>
+        <a href="about.html">about</a>
+        <a href="contact.html">contact</a>
       </nav>
     </header>
 
-    <main>
-      <section class="card">
-        <h1 class="gradText">Paintings</h1>
-        <p class="intro">
-          A selection of original paintings. If you’re interested in a piece, email me and I’ll confirm availability and shipping.
-        </p>
+    <section class="gallery" aria-label="Paintings gallery">
 
-        <div class="masonry">
-
-          <!-- Docks at St. Simons (was Sailboats.jpg) -->
-          <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Docks%20at%20St.%20Simons">
-            <span class="tag">Inquire</span>
-            <img src="Sailboats.jpg" alt="Docks at St. Simons">
-            <div class="cap">
-              <b class="warmText">Docks at St. Simons</b>
-              <span>16&quot;×20&quot; • acrylic on cradled birch</span>
-            </div>
-          </a>
-
-          <!-- Breakers -->
-          <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Breakers">
-            <span class="tag">Inquire</span>
-            <img src="Breakers.jpg" alt="Breakers">
-            <div class="cap">
-              <b class="warmText">Breakers</b>
-              <span>&times;48&quot; • acrylic on canvas</span>
-            </div>
-          </a>
-
-          <!-- Tulips -->
-          <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Tulips">
-            <span class="tag">Inquire</span>
-            <img src="Tulips.jpg" alt="Tulips">
-            <div class="cap">
-              <b class="warmText">Tulips</b>
-              <span>20&quot;×30&quot; • oil on canvas</span>
-            </div>
-          </a>
-
-          <!-- Cumberland (details later) -->
-          <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Cumberland">
-            <span class="tag">Inquire</span>
-            <img src="Cumberland.jpg" alt="Cumberland">
-            <div class="cap">
-              <b class="warmText">Cumberland</b>
-              <span>Details coming soon</span>
-            </div>
-          </a>
-
-          <!-- A few more already in your repo (placeholders until you give details) -->
-          <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Breckenridge">
-            <span class="tag">Inquire</span>
-            <img src="Breckenridge.jpg" alt="Breckenridge">
-            <div class="cap">
-              <b class="warmText">Breckenridge</b>
-              <span>Details coming soon</span>
-            </div>
-          </a>
-
-          <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Golden%20Hour%20Creek">
-            <span class="tag">Inquire</span>
-            <img src="Golden-Hour-Creek.jpg" alt="Golden Hour Creek">
-            <div class="cap">
-              <b class="warmText">Golden Hour Creek</b>
-              <span>Details coming soon</span>
-            </div>
-          </a>
-
-          <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Keeneland">
-            <span class="tag">Inquire</span>
-            <img src="Keeneland.jpg" alt="Keeneland">
-            <div class="cap">
-              <b class="warmText">Keeneland</b>
-              <span>Details coming soon</span>
-            </div>
-          </a>
-
-          <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Wailea">
-            <span class="tag">Inquire</span>
-            <img src="Wailea.jpg" alt="Wailea">
-            <div class="cap">
-              <b class="warmText">Wailea</b>
-              <span>Details coming soon</span>
-            </div>
-          </a>
-
-          <a class="tile" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Cashiers">
-            <span class="tag">Inquire</span>
-            <img src="Cashiers.jpg" alt="Cashiers">
-            <div class="cap">
-              <b class="warmText">Cashiers</b>
-              <span>Details coming soon</span>
-            </div>
-          </a>
-
+      <!-- Docks at St. Simons (Sailboats.jpg) -->
+      <a class="tile w8" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Docks%20at%20St.%20Simons">
+        <span class="tag">inquire</span>
+        <img src="Sailboats.jpg" alt="Docks at St. Simons">
+        <div class="cap">
+          <b>Docks at St. Simons</b>
+          <span>16&quot;×20&quot; • acrylic on cradled birch</span>
         </div>
-      </section>
-    </main>
+      </a>
+
+      <!-- Breckenridge -->
+      <a class="tile w4" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Breckenridge">
+        <span class="tag">inquire</span>
+        <img src="Breckenridge.jpg" alt="Breckenridge">
+        <div class="cap">
+          <b>Breckenridge</b>
+          <span>details coming soon</span>
+        </div>
+      </a>
+
+      <!-- Breakers -->
+      <a class="tile w6" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Breakers">
+        <span class="tag">inquire</span>
+        <img src="Breakers.jpg" alt="Breakers">
+        <div class="cap">
+          <b>Breakers</b>
+          <span>&times;48&quot; • acrylic on canvas</span>
+        </div>
+      </a>
+
+      <!-- Cumberland -->
+      <a class="tile w6" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Cumberland">
+        <span class="tag">inquire</span>
+        <img src="Cumberland.jpg" alt="Cumberland">
+        <div class="cap">
+          <b>Cumberland</b>
+          <span>details coming soon</span>
+        </div>
+      </a>
+
+      <!-- Tulips -->
+      <a class="tile w4" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Tulips">
+        <span class="tag">inquire</span>
+        <img src="Tulips.jpg" alt="Tulips">
+        <div class="cap">
+          <b>Tulips</b>
+          <span>20&quot;×30&quot; • oil on canvas</span>
+        </div>
+      </a>
+
+      <!-- Keeneland -->
+      <a class="tile w8" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Keeneland">
+        <span class="tag">inquire</span>
+        <img src="Keeneland.jpg" alt="Keeneland">
+        <div class="cap">
+          <b>Keeneland</b>
+          <span>details coming soon</span>
+        </div>
+      </a>
+
+      <!-- Optional extras already in your repo (uncomment as you add details)
+      <a class="tile w6" href="mailto:stevenrwilson7@icloud.com?subject=Inquiry%20-%20Golden%20Hour%20Creek">
+        <span class="tag">inquire</span>
+        <img src="Golden-Hour-Creek.jpg" alt="Golden Hour Creek">
+        <div class="cap">
+          <b>Golden Hour Creek</b>
+          <span>details coming soon</span>
+        </div>
+      </a>
+      -->
+
+    </section>
   </div>
 </body>
 </html>
