@@ -3,22 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Steve Wilson</title>
-  <meta name="description" content="Steve Wilson — studio website." />
+  <title>Steve Wilson Studio</title>
 
-  <!-- High-contrast serif with italic -->
+  <!-- Sleek Didot/Bodoni-like serif + clean sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,200;6..96,300;6..96,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#0f1115;
-      --text:#f2f4f8;
+      --bg:#0b1220;
+      --text:#ffffff;
       --muted:rgba(255,255,255,0.75);
-      --muted2:rgba(255,255,255,0.62);
-      --line:rgba(255,255,255,0.14);
-      --radius:0px;
+      --muted2:rgba(255,255,255,0.58);
+
+      /* overall dimming on background */
+      --dim:0.55;
+
+      /* spacing */
+      --pad:56px;
     }
 
     *{box-sizing:border-box}
@@ -26,143 +29,142 @@
     body{
       margin:0;
       color:var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      background: var(--bg);
-      overflow-x:hidden;
-    }
-    a{color:inherit; text-decoration:none}
-
-    /* Background crossfade */
-    .hero{
-      position:relative;
-      min-height:100vh;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
       overflow:hidden;
+      background:#000;
     }
-    .slides{position:absolute; inset:0; z-index:0}
+
+    /* Background slideshow */
+    .bg{
+      position:fixed;
+      inset:0;
+      z-index:-2;
+      overflow:hidden;
+      background:#000;
+    }
+    .bg::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,var(--dim));
+      z-index:2;
+    }
+
     .slide{
-      position:absolute; inset:0;
+      position:absolute;
+      inset:0;
       background-size:cover;
       background-position:center;
       opacity:0;
-      transition: opacity 1.6s ease-in-out;
-      transform: scale(1.02);
+      transition: opacity 1300ms ease;
+      transform: scale(1.03);
+      z-index:1;
     }
     .slide.active{opacity:1}
 
-    /* Dim overlay */
-    .overlay{
-      position:absolute; inset:0; z-index:1;
-      background:
-        radial-gradient(900px 520px at 18% 25%, rgba(0,0,0,0.18), transparent 58%),
-        linear-gradient(180deg, rgba(0,0,0,0.46) 0%, rgba(0,0,0,0.56) 55%, rgba(0,0,0,0.68) 100%);
+    /* Left content block */
+    .content{
+      position:relative;
+      height:100vh;
+      display:flex;
+      align-items:flex-start;
+      justify-content:flex-start;
+      padding: var(--pad);
     }
 
-    /* Left menu block */
-    .left{
-      position:relative;
-      z-index:2;
+    /* This is the key: we place the block lower, Svob-style */
+    .panel{
       max-width: 520px;
-      padding: 0 18px;
-      margin-left: clamp(18px, 6vw, 72px);
-
-      /* ✅ move block lower so name never clips */
-      padding-top: 54vh;
-      transform: translateY(-50%);
+      margin-top: 32vh; /* <- moves text down */
     }
 
     .name{
-      font-family: "Libre Bodoni", serif;
+      margin:0 0 10px 0;
+      font-family: "Bodoni Moda", serif;
       font-style: italic;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-      font-size: clamp(56px, 6.6vw, 96px);
+      font-weight: 300;          /* <- unbold + svelte */
+      font-size: clamp(58px, 6vw, 96px);
       line-height: 0.95;
-      margin: 0 0 10px;
-      color: rgba(255,255,255,0.96);
-      text-shadow: 0 10px 28px rgba(0,0,0,0.38);
+      letter-spacing: 0.02em;    /* <- subtle tracking like Svob */
+      text-rendering: geometricPrecision;
     }
 
     .welcome{
-      margin: 0 0 18px;
+      margin: 0 0 26px 2px;
       font-size: 16px;
       color: var(--muted);
-      text-shadow: 0 10px 28px rgba(0,0,0,0.35);
     }
 
-    .menu{
-      list-style:none;
-      padding:0;
-      margin:0;
+    .nav{
       display:flex;
       flex-direction:column;
       gap: 14px;
-    }
-    .menu a{
-      display:inline-block;
-      font-size: 15px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.88);
-      padding: 2px 0;
-      width: fit-content;
-      border-bottom: 1px solid transparent;
-    }
-    .menu a:hover{
-      border-bottom-color: rgba(255,255,255,0.55);
+      margin: 0 0 26px 2px;
+      padding:0;
+      list-style:none;
     }
 
-    .social{
+    .nav a{
+      display:inline-block;
+      font-size: 14px;
+      letter-spacing: 0.18em;    /* <- the Svob “spaced” look */
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.88);
+      text-decoration:none;
+    }
+
+    .nav a:hover{
+      color: rgba(255,255,255,1);
+    }
+
+    .icons{
       display:flex;
       gap: 14px;
-      margin-top: 18px;
       align-items:center;
+      margin-left: 2px;
     }
+
     .icon{
       width: 22px;
       height: 22px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      opacity: 0.88;
+      display:inline-block;
+      opacity: 0.9;
     }
-    .icon:hover{opacity: 1}
-    .icon svg{width:22px; height:22px; fill: rgba(255,255,255,0.9)}
+    .icon:hover{opacity:1}
 
-    .smallNote{
-      position:absolute;
-      left: clamp(18px, 6vw, 72px);
-      bottom: 16px;
-      z-index:2;
-      font-size:12px;
-      color: var(--muted2);
-      letter-spacing:0.2px;
+    /* Simple svg icons inherit color */
+    svg{fill:none; stroke:rgba(255,255,255,0.92); stroke-width:1.8}
+
+    /* Responsive tweaks */
+    @media (max-width: 700px){
+      :root{ --pad: 26px; }
+      body{overflow:auto}
+      .content{min-height:100vh; overflow:hidden}
+      .panel{margin-top: 30vh;}
+      .nav a{letter-spacing: 0.16em;}
     }
 
-    @media (max-width: 720px){
-      .left{
-        padding-top: 58vh; /* slightly lower on phones */
-        margin-left: 18px;
-        max-width: 92vw;
-      }
-      .menu a{letter-spacing: 2.6px}
+    @media (max-height: 650px){
+      .panel{margin-top: 24vh;}
     }
   </style>
 </head>
 
 <body>
-  <main class="hero">
-    <div class="slides" aria-hidden="true">
-      <div class="slide active" style="background-image:url('Cumberland.jpg')"></div>
-      <div class="slide" style="background-image:url('Breckenridge.jpg')"></div>
-      <div class="slide" style="background-image:url('Keeneland.jpg')"></div>
-    </div>
-    <div class="overlay" aria-hidden="true"></div>
+  <!-- Background slideshow -->
+  <div class="bg" aria-hidden="true">
+    <!-- Use only these three images per your request -->
+    <div class="slide active" style="background-image:url('Cumberland.jpg');"></div>
+    <div class="slide" style="background-image:url('Breckenridge.jpg');"></div>
+    <div class="slide" style="background-image:url('Keeneland.jpg');"></div>
+  </div>
 
-    <section class="left" aria-label="Site menu">
-      <h1 class="name">Steve Wilson</h1>
+  <main class="content">
+    <section class="panel" aria-label="Homepage navigation">
+      <h1 class="name">Steve<br>Wilson</h1>
       <p class="welcome">Welcome to my studio website.</p>
 
-      <ul class="menu">
+      <ul class="nav">
         <li><a href="paintings.html">Paintings</a></li>
         <li><a href="prints.html">Prints</a></li>
         <li><a href="workshops.html">Workshops &amp; Exhibitions</a></li>
@@ -170,42 +172,44 @@
         <li><a href="about.html">About</a></li>
       </ul>
 
-      <div class="social" aria-label="Social links">
-        <a class="icon" href="https://www.instagram.com/steven_wilson_fine_art/" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm9 2h-9A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4z"/>
-            <path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>
-            <path d="M17.8 6.2a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+      <div class="icons" aria-label="Social links">
+        <!-- Instagram -->
+        <a class="icon" href="https://www.instagram.com/steven_wilson_fine_art/" target="_blank" rel="noreferrer" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="22" height="22">
+            <rect x="4" y="4" width="16" height="16" rx="4"></rect>
+            <circle cx="12" cy="12" r="3.5"></circle>
+            <circle cx="17.5" cy="6.5" r="1"></circle>
           </svg>
         </a>
 
+        <!-- Email -->
         <a class="icon" href="mailto:stevenrwilson7@icloud.com" aria-label="Email">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/>
+          <svg viewBox="0 0 24 24" width="22" height="22">
+            <path d="M4 7h16v10H4z"></path>
+            <path d="M4 7l8 6 8-6"></path>
           </svg>
         </a>
 
-        <a class="icon" href="https://www.facebook.com/search/top?q=steven%20wilson%20art" target="_blank" rel="noopener" aria-label="Facebook search">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8v-2.9h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4H15c-1.2 0-1.6.8-1.6 1.6v1.9H18l-.7 2.9h-3v7A10 10 0 0 0 22 12z"/>
+        <!-- Facebook search link -->
+        <a class="icon" href="https://www.facebook.com/search/top?q=steven%20wilson%20art" target="_blank" rel="noreferrer" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" width="22" height="22">
+            <path d="M14 8h3V5h-3c-2.2 0-4 1.8-4 4v2H7v3h3v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1z"></path>
           </svg>
         </a>
       </div>
     </section>
-
-    <div class="smallNote">© Steve Wilson Studio</div>
   </main>
 
   <script>
+    // Simple crossfade slideshow
     const slides = Array.from(document.querySelectorAll('.slide'));
     let i = 0;
-    const intervalMs = 6500;
 
     setInterval(() => {
       slides[i].classList.remove('active');
       i = (i + 1) % slides.length;
       slides[i].classList.add('active');
-    }, intervalMs);
+    }, 6500);
   </script>
 </body>
 </html>
