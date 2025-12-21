@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Steve Wilson Studio</title>
-  <meta name="description" content="Original paintings and fine art prints by Steve Wilson." />
+  <title>Prints — Steve Wilson Studio</title>
+  <meta name="description" content="Fine art prints by Steve Wilson." />
 
   <style>
     :root{
-      --bg:#0f1115;
-      --text:#f2f4f8;
-      --muted:#b9c0cf;
-      --line:rgba(255,255,255,0.12);
-      --card:rgba(20,24,36,0.70);
+      --bg:#0f1115; --text:#f2f4f8; --muted:#b9c0cf;
+      --line:rgba(255,255,255,0.12); --card:rgba(20,24,36,0.70);
       --max:1120px;
+      --grad: linear-gradient(90deg,
+        rgba(120,190,255,1) 0%,
+        rgba(235,248,255,0.98) 52%,
+        rgba(255,228,170,0.98) 100%);
     }
     *{box-sizing:border-box}
     body{
@@ -24,188 +25,57 @@
         radial-gradient(1200px 700px at 20% -10%, rgba(90,160,255,0.18), transparent 60%),
         radial-gradient(900px 500px at 90% 0%, rgba(255,208,140,0.12), transparent 55%),
         var(--bg);
-      line-height:1.55;
+      line-height:1.6;
     }
     a{color:inherit; text-decoration:none}
     .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 64px}
+    .gradText{background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent}
 
     header{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:16px;
-      padding-bottom:18px;
+      display:flex; align-items:flex-end; justify-content:space-between; gap:16px; padding-bottom:18px;
     }
-
-    /* Brand (clickable to go home) */
-    .brandLink{display:inline-block}
-    .brandName{
-      margin:0;
-      line-height:1.0;
-      font-weight:800;
-      letter-spacing:0.2px;
-      font-size:64px;
-      /* softer “morning light” gradient */
-      background: linear-gradient(90deg,
-        rgba(120,190,255,1) 0%,
-        rgba(225,245,255,0.98) 50%,
-        rgba(255,226,170,0.98) 100%);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-      text-shadow: 0 0 18px rgba(120,190,255,0.10), 0 0 16px rgba(255,226,170,0.06);
-    }
-    .brandTag{
-      margin:6px 0 0;
-      font-size:14px;
-      color:var(--muted);
-    }
-
+    .brandName{margin:0; line-height:1.0; font-weight:800; letter-spacing:0.2px; font-size:64px}
+    .brandTag{margin:6px 0 0; font-size:14px; color:var(--muted)}
     nav{display:flex; gap:10px; flex-wrap:wrap; padding-bottom:3px}
     nav a{
-      font-size:14px;
-      color:var(--muted);
-      padding:8px 10px;
-      border-radius:10px;
-      border:1px solid transparent;
+      font-size:14px; color:var(--muted); padding:8px 10px; border-radius:10px; border:1px solid transparent;
     }
     nav a:hover{
-      color:var(--text);
-      border-color:var(--line);
-      background:rgba(255,255,255,0.04);
+      border-color:var(--line); background:rgba(255,255,255,0.04);
+      background-image:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;
     }
 
     .card{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:18px;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+      background:var(--card); border:1px solid var(--line); border-radius:18px; padding:22px;
+      backdrop-filter: blur(6px); box-shadow: 0 12px 30px rgba(0,0,0,0.35);
     }
-
-    /* 30% / 70% hero layout */
-    .hero{
-      display:grid;
-      grid-template-columns: 0.95fr 2.05fr; /* ~30% / 70% */
-      gap:18px;
-      margin-top:10px;
-      align-items:stretch;
-    }
-
-    h1{
-      margin:0 0 10px;
-      font-size:22px;
-      line-height:1.25;
-      font-weight:650;
-      letter-spacing:-0.2px;
-    }
-
-    .lead{
-      margin:0;
-      font-size:14px;
-      color:var(--muted);
-    }
-
-    .cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:10px 12px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,0.04);
-      color:var(--text);
-      font-weight:650;
-      font-size:13px;
-    }
-    .btn.primary{
-      background:#ffffff;
-      color:#0f1115;
-      border-color:transparent;
-    }
-    .btn:hover{transform:translateY(-1px); transition:160ms ease}
-
-    .meta{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:10px;
-      margin-top:12px;
-    }
-    .pill{
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:12px;
-      background:rgba(255,255,255,0.03);
-      font-size:13px;
-      color:var(--muted);
-    }
-    .pill b{color:var(--text); font-weight:650}
-
-    .heroImageWrap{
-      padding:0;
-      overflow:hidden;
-    }
-    .heroImageWrap img{
-      width:100%;
-      height:100%;
-      display:block;
-      object-fit:cover;
-      border-radius:18px;
-    }
-
-    .sectionTitle{
-      margin:30px 0 12px;
-      font-size:14px;
-      color:var(--muted);
-      text-transform:uppercase;
-      letter-spacing:0.25px;
-    }
+    h1{margin:0 0 10px; font-size:26px; line-height:1.2; font-weight:800; letter-spacing:-0.3px}
+    .intro{margin:0; color:var(--muted); max-width:75ch}
+    .sectionTitle{margin:26px 0 12px; font-size:14px; text-transform:uppercase; letter-spacing:0.25px; font-weight:800}
 
     .grid{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
       gap:14px;
     }
-    .art{
-      border-radius:16px;
-      border:1px solid var(--line);
+    .tile{
       background:rgba(255,255,255,0.03);
+      border:1px solid var(--line);
+      border-radius:16px;
       overflow:hidden;
     }
-    .thumb{
-      height:170px;
-      display:grid;
-      place-items:center;
-      font-weight:650;
-      color:rgba(255,255,255,0.72);
-      background:
-        linear-gradient(135deg, rgba(120,190,255,0.18), rgba(255,226,170,0.10));
-    }
-    .info{padding:12px}
-    .info b{display:block; font-size:14px; color:var(--text)}
-    .info span{display:block; font-size:13px; color:var(--muted); margin-top:2px}
+    .tile img{width:100%; height:230px; object-fit:cover; display:block}
+    .tile .cap{padding:12px; color:var(--muted); font-size:13px}
+    .tile .cap b{display:block; margin-bottom:4px; font-size:14px}
 
-    footer{
-      margin-top:40px;
-      padding-top:16px;
-      border-top:1px solid var(--line);
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-      font-size:13px;
-      color:var(--muted);
-    }
+    .note{color:var(--muted); margin:0}
+    .twoCol{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px}
 
     @media (max-width: 900px){
-      header{align-items:flex-start}
       .brandName{font-size:44px}
-      .hero{grid-template-columns: 1fr}
-      .heroImageWrap img{height:auto; object-fit:contain}
-      .grid{grid-template-columns: 1fr}
-      .thumb{height:190px}
+      .grid{grid-template-columns:1fr}
+      .tile img{height:240px}
+      .twoCol{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -214,100 +84,51 @@
   <div class="wrap">
     <header>
       <div>
-        <a class="brandLink" href="index.html" aria-label="Home">
-          <p class="brandName">Steve Wilson Studio</p>
-        </a>
+        <a href="index.html" aria-label="Home"><p class="brandName gradText">Steve Wilson Studio</p></a>
         <p class="brandTag">Original paintings &amp; fine art prints</p>
       </div>
-
       <nav>
+        <a href="index.html">Home</a>
         <a href="about.html">About</a>
-        <a href="#work">Work</a>
-        <a href="#prints">Prints</a>
-        <a href="#originals">Originals</a>
-        <a href="#contact">Contact</a>
+        <a href="prints.html">Prints</a>
+        <a href="paintings.html">Paintings</a>
+        <a href="index.html#contact">Contact</a>
       </nav>
     </header>
 
     <main>
-      <section class="hero">
-        <div class="card">
-          <h1>Paintings shaped by light, place, and the fleeting beauty found in everyday life.</h1>
-          <p class="lead">
-            I paint as a way of remembering how moments feel—brief, familiar pauses that stay with us longer than we expect.
-          </p>
+      <section class="card">
+        <h1 class="gradText">Fine Art Prints</h1>
+        <p class="intro">
+          If you’d like to live with the work without purchasing an original, I offer high-quality prints in a few standard sizes.
+          Each print is inspected, packed, and shipped by me.
+        </p>
 
-          <div class="cta">
-            <a class="btn primary" href="#work">View the work</a>
-            <a class="btn" href="#prints">Shop prints</a>
-            <a class="btn" href="#contact">Contact</a>
+        <div class="sectionTitle gradText">Print gallery</div>
+        <div class="grid">
+          <div class="tile"><img src="Sailboats.jpg" alt="Print example"><div class="cap"><b class="gradText">Sailboats</b>Archival print • multiple sizes</div></div>
+          <div class="tile"><img src="Sailboats.jpg" alt="Print example"><div class="cap"><b class="gradText">Coming soon</b>Archival print • multiple sizes</div></div>
+          <div class="tile"><img src="Sailboats.jpg" alt="Print example"><div class="cap"><b class="gradText">Coming soon</b>Archival print • multiple sizes</div></div>
+        </div>
+
+        <div class="sectionTitle gradText">Materials</div>
+        <div class="twoCol">
+          <div class="card" style="padding:16px;">
+            <p class="note"><span class="gradText" style="font-weight:800;">Paper</span><br>
+              Archival, acid-free fine art paper with a matte finish.</p>
           </div>
-
-          <div class="meta">
-            <div class="pill"><b>Prints</b><br>Archival prints, packed and shipped by me.</div>
-            <div class="pill"><b>Originals</b><br>Availability changes—email for details.</div>
+          <div class="card" style="padding:16px;">
+            <p class="note"><span class="gradText" style="font-weight:800;">Ordering</span><br>
+              For now, email me with the print name + size, and your shipping address. I’ll reply with total price and shipping.</p>
           </div>
         </div>
 
-        <div class="card heroImageWrap">
-          <img src="Sailboats.jpg" alt="Sailboats painting by Steve Wilson" />
-        </div>
+        <div class="sectionTitle gradText">Contact to order</div>
+        <p class="note">
+          Email: <a href="mailto:stevenrwilson7@icloud.com"><span class="gradText" style="font-weight:800;">stevenrwilson7@icloud.com</span></a>
+        </p>
       </section>
-
-      <div class="sectionTitle" id="work">Featured work</div>
-      <section class="grid">
-        <div class="art">
-          <div class="thumb">Sailboats</div>
-          <div class="info">
-            <b>Sailboats</b>
-            <span>Oil on panel • 8×10</span>
-          </div>
-        </div>
-        <div class="art">
-          <div class="thumb">Paddock Walk</div>
-          <div class="info">
-            <b>Paddock Walk</b>
-            <span>Oil on canvas • 18×24</span>
-          </div>
-        </div>
-        <div class="art">
-          <div class="thumb">Late Afternoon Shadows</div>
-          <div class="info">
-            <b>Late Afternoon Shadows</b>
-            <span>Oil on panel • 11×14</span>
-          </div>
-        </div>
-      </section>
-
-      <div class="sectionTitle" id="prints">Prints</div>
-      <div class="card">
-        Prints are offered in a small number of standard sizes. Each is made, inspected, and shipped by me.
-        Ordering will be enabled here shortly.
-      </div>
-
-      <div class="sectionTitle" id="originals">Originals</div>
-      <div class="card">
-        Originals are offered as they become available. If you’re interested in a piece, email me and I’ll confirm
-        availability, pricing, and shipping.
-      </div>
-
-      <div class="sectionTitle" id="contact">Contact</div>
-      <div class="card">
-        Email:
-        <a href="mailto:stevenrwilson7@icloud.com" style="font-weight:800; color: var(--text);">
-          stevenrwilson7@icloud.com
-        </a>
-      </div>
     </main>
-
-    <footer>
-      <span>© <span id="y"></span> Steve Wilson Studio</span>
-      <span>stevewilsonstudio.com</span>
-    </footer>
   </div>
-
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
