@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>prints — Steve Wilson</title>
+  <title>prints and commissions — Steve Wilson</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,124 +11,49 @@
 
   <style>
     :root{
-      --bg:#ffffff;
-      --text:#111;
-      --muted:rgba(0,0,0,0.62);
-      --muted2:rgba(0,0,0,0.44);
-      --rule: rgba(0,0,0,0.12);
+      --bg:#fff; --text:#111;
+      --muted: rgba(0,0,0,.62);
+      --muted2: rgba(0,0,0,.44);
+      --rule: rgba(0,0,0,.12);
       --max: 1320px;
       --radius: 0px;
     }
     *{box-sizing:border-box}
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--text);
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      line-height:1.55;
-    }
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55}
     a{color:inherit;text-decoration:none}
 
-    .wrap{ max-width: var(--max); margin:0 auto; padding: 28px 18px 70px; }
+    .wrap{max-width:var(--max);margin:0 auto;padding:28px 18px 70px}
+    header{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+    .brand h1{margin:0;font-family:"Libre Bodoni",serif;font-style:italic;font-weight:300;font-size:46px;letter-spacing:.02em;line-height:.95;white-space:nowrap}
+    .brand .sub{margin:6px 0 0 2px;font-size:13px;color:var(--muted2);text-transform:lowercase}
+    nav{display:flex;flex-wrap:wrap;gap:18px;padding-bottom:4px}
+    nav a{font-size:15px;color:rgba(0,0,0,.72);text-transform:lowercase;letter-spacing:.06em;padding-bottom:2px;border-bottom:1px solid transparent}
+    nav a:hover{border-bottom-color:rgba(0,0,0,.35)}
+    nav a.active{color:rgba(0,0,0,.95);border-bottom-color:rgba(0,0,0,.75)}
 
-    header{
-      display:flex; align-items:flex-end; justify-content:space-between; gap:18px;
-      padding-bottom:14px; border-bottom:1px solid var(--rule);
-    }
-    .brand h1{
-      margin:0; font-family:"Libre Bodoni", serif; font-style: italic; font-weight:300;
-      font-size:46px; letter-spacing:0.02em; line-height:0.95; white-space:nowrap;
-    }
-    .brand .sub{ margin:6px 0 0 2px; font-size:13px; color:var(--muted2); text-transform:lowercase; }
+    .pageTitle{margin:18px 0 12px;font-size:18px;font-weight:500;letter-spacing:.08em;text-transform:lowercase;color:rgba(0,0,0,.85)}
+    .intro{max-width:78ch;color:var(--muted);font-size:16px;margin-bottom:18px}
 
-    nav{ display:flex; flex-wrap:wrap; gap:18px; padding-bottom:4px; }
-    nav a{
-      font-size:15px; color: rgba(0,0,0,0.72); text-transform:lowercase; letter-spacing:0.06em;
-      padding-bottom:2px; border-bottom:1px solid transparent;
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:10px}
+    .card{border:1px solid var(--rule);border-radius:var(--radius);overflow:hidden;background:#fff}
+    .placeholder{
+      width:100%; aspect-ratio: 4/3;
+      background:#f2f2f2;
+      display:flex; align-items:center; justify-content:center;
+      color: var(--muted2); font-size:13px; letter-spacing:.02em;
     }
-    nav a:hover{ border-bottom-color: rgba(0,0,0,0.35); }
-    nav a.active{ color: rgba(0,0,0,0.95); border-bottom-color: rgba(0,0,0,0.75); }
+    .body{padding:12px 12px 14px}
+    .title{margin:0;font-size:15px;font-weight:500;color:rgba(0,0,0,.92)}
+    .meta{margin:6px 0 0;font-size:13px;color:var(--muted)}
+    .btn{display:inline-block;margin-top:10px;padding:10px 12px;border:1px solid rgba(0,0,0,.22);border-radius:var(--radius);font-size:14px;letter-spacing:.02em;color:rgba(0,0,0,.86);background:#fff}
+    .btn:hover{background:rgba(0,0,0,.03)}
 
-    .pageTitle{
-      margin:18px 0 12px;
-      font-size:18px; font-weight:500; letter-spacing:0.08em; text-transform:lowercase;
-      color: rgba(0,0,0,0.85);
-    }
+    .note{margin-top:22px;max-width:78ch;color:var(--muted);font-size:15px;line-height:1.65}
+    .email{border-bottom:1px solid rgba(0,0,0,.35);padding-bottom:1px}
+    .email:hover{border-bottom-color:rgba(0,0,0,.75)}
 
-    .topText{
-      max-width: 78ch;
-      color: var(--muted);
-      font-size: 16px;
-      margin-bottom: 18px;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 10px;
-    }
-
-    .card{
-      border: 1px solid var(--rule);
-      border-radius: var(--radius);
-      overflow:hidden;
-      background:#fff;
-    }
-
-    .imgBox{
-      width:100%;
-      aspect-ratio: 4 / 3;
-      background: #f2f2f2;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color: var(--muted2);
-      font-size: 13px;
-      letter-spacing: 0.02em;
-    }
-
-    .imgBox img{
-      width:100%;
-      height:100%;
-      object-fit: cover;
-      display:block;
-    }
-
-    .cardBody{
-      padding: 12px 12px 14px;
-    }
-
-    .title{ margin:0; font-size:15px; font-weight:500; color: rgba(0,0,0,0.92); }
-    .meta{ margin:6px 0 0; font-size:13px; color: var(--muted); }
-
-    .btnRow{
-      margin-top: 10px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-
-    .btn{
-      display:inline-block;
-      padding: 10px 12px;
-      border: 1px solid rgba(0,0,0,0.22);
-      border-radius: var(--radius);
-      font-size: 14px;
-      letter-spacing: 0.02em;
-      color: rgba(0,0,0,0.86);
-      background:#fff;
-    }
-    .btn:hover{ background: rgba(0,0,0,0.03); }
-
-    @media (max-width: 1100px){
-      .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .brand h1{ font-size:40px; white-space:normal; }
-    }
-    @media (max-width: 700px){
-      header{ align-items:flex-start; flex-direction:column; }
-      .grid{ grid-template-columns: 1fr; }
-    }
+    @media (max-width:1100px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.brand h1{font-size:40px;white-space:normal}}
+    @media (max-width:700px){header{flex-direction:column;align-items:flex-start}.grid{grid-template-columns:1fr}}
   </style>
 </head>
 
@@ -139,71 +64,57 @@
         <h1><a href="index.html">Steve Wilson</a></h1>
         <div class="sub">studio</div>
       </div>
-
       <nav aria-label="primary">
         <a href="index.html">home</a>
         <a href="paintings.html">paintings</a>
-        <a class="active" href="prints.html">prints</a>
-        <a href="workshops.html">workshops &amp; exhibitions</a>
+        <a class="active" href="prints.html">prints and commissions</a>
+        <a href="exhibitions.html">exhibitions</a>
         <a href="galleries.html">galleries</a>
         <a href="about.html">about</a>
-        <a href="contact.html">contact</a>
       </nav>
     </header>
 
-    <div class="pageTitle">prints</div>
+    <div class="pageTitle">prints and commissions</div>
 
-    <p class="topText">
-      I offer a curated selection of fine art prints. To order, email me the print name and size you’d like,
-      along with your shipping city/state. I’ll reply with pricing, shipping, and timing.
+    <p class="intro">
+      A curated selection of fine art prints will be available here soon. For now, please email me with the print name and size you’d like,
+      along with your shipping city/state, and I’ll reply with pricing and timing.
     </p>
 
-    <section class="grid" aria-label="Print examples">
-
-      <!-- Example 1 -->
+    <section class="grid" aria-label="Print examples (placeholders)">
       <article class="card">
-        <div class="imgBox">
-          <!-- Use the real image now (Sailboats.jpg) OR replace with placeholder later -->
-          <img src="Sailboats.jpg" alt="Docks at St. Simons print example">
-        </div>
-        <div class="cardBody">
+        <div class="placeholder">print mockup coming soon</div>
+        <div class="body">
           <p class="title">Docks at St. Simons</p>
           <p class="meta">archival print • multiple sizes</p>
-          <div class="btnRow">
-            <a class="btn" href="mailto:stevenrwilson7@icloud.com?subject=Print%20Order%20-%20Docks%20at%20St.%20Simons&body=Hi%20Steve%2C%0A%0AI%E2%80%99d%20like%20to%20order%20a%20print%20of%20%22Docks%20at%20St.%20Simons%22.%0A%0ASize%3A%20%0AQuantity%3A%20%0AShipping%20city%2Fstate%3A%20%0A%0AThank%20you%2C%0A">email to order</a>
-          </div>
+          <a class="btn" href="mailto:stevenrwilson7@icloud.com?subject=Print%20Inquiry%20-%20Docks%20at%20St.%20Simons">email inquiry</a>
         </div>
       </article>
 
-      <!-- Example 2 -->
       <article class="card">
-        <div class="imgBox">
-          <img src="Keeneland.jpg" alt="Keeneland print example">
-        </div>
-        <div class="cardBody">
+        <div class="placeholder">print mockup coming soon</div>
+        <div class="body">
           <p class="title">Keeneland</p>
           <p class="meta">archival print • multiple sizes</p>
-          <div class="btnRow">
-            <a class="btn" href="mailto:stevenrwilson7@icloud.com?subject=Print%20Order%20-%20Keeneland&body=Hi%20Steve%2C%0A%0AI%E2%80%99d%20like%20to%20order%20a%20print%20of%20%22Keeneland%22.%0A%0ASize%3A%20%0AQuantity%3A%20%0AShipping%20city%2Fstate%3A%20%0A%0AThank%20you%2C%0A">email to order</a>
-          </div>
+          <a class="btn" href="mailto:stevenrwilson7@icloud.com?subject=Print%20Inquiry%20-%20Keeneland">email inquiry</a>
         </div>
       </article>
 
-      <!-- Example 3 -->
       <article class="card">
-        <div class="imgBox">
-          <img src="Breckenridge.jpg" alt="Breckenridge print example">
-        </div>
-        <div class="cardBody">
+        <div class="placeholder">print mockup coming soon</div>
+        <div class="body">
           <p class="title">Breckenridge</p>
           <p class="meta">archival print • multiple sizes</p>
-          <div class="btnRow">
-            <a class="btn" href="mailto:stevenrwilson7@icloud.com?subject=Print%20Order%20-%20Breckenridge&body=Hi%20Steve%2C%0A%0AI%E2%80%99d%20like%20to%20order%20a%20print%20of%20%22Breckenridge%22.%0A%0ASize%3A%20%0AQuantity%3A%20%0AShipping%20city%2Fstate%3A%20%0A%0AThank%20you%2C%0A">email to order</a>
-          </div>
+          <a class="btn" href="mailto:stevenrwilson7@icloud.com?subject=Print%20Inquiry%20-%20Breckenridge">email inquiry</a>
         </div>
       </article>
-
     </section>
+
+    <p class="note">
+      <b>Commissions:</b> Steve considers commissions on a limited basis. Please reach out to discuss subject, size, timing, and availability at
+      <a class="email" href="mailto:stevenrwilson7@icloud.com">stevenrwilson7@icloud.com</a>.
+    </p>
+
   </div>
 </body>
 </html>
