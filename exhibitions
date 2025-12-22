@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>exhibitions — Steve Wilson</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root{--bg:#fff;--text:#111;--muted:rgba(0,0,0,.62);--muted2:rgba(0,0,0,.44);--rule:rgba(0,0,0,.12);--max:980px;--maxWrap:1320px}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.65}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--maxWrap);margin:0 auto;padding:28px 18px 70px}
+    header{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+    .brand h1{margin:0;font-family:"Libre Bodoni",serif;font-style:italic;font-weight:300;font-size:46px;letter-spacing:.02em;line-height:.95;white-space:nowrap}
+    .brand .sub{margin:6px 0 0 2px;font-size:13px;color:var(--muted2);text-transform:lowercase}
+    nav{display:flex;flex-wrap:wrap;gap:18px;padding-bottom:4px}
+    nav a{font-size:15px;color:rgba(0,0,0,.72);text-transform:lowercase;letter-spacing:.06em;padding-bottom:2px;border-bottom:1px solid transparent}
+    nav a:hover{border-bottom-color:rgba(0,0,0,.35)}
+    nav a.active{color:rgba(0,0,0,.95);border-bottom-color:rgba(0,0,0,.75)}
+    .content{max-width:var(--max);margin-top:18px}
+    .pageTitle{margin:18px 0 12px;font-size:18px;font-weight:500;letter-spacing:.08em;text-transform:lowercase;color:rgba(0,0,0,.85)}
+    p{margin:0 0 14px 0;color:var(--muted);font-size:16px}
+
+    .sectionTitle{
+      margin: 18px 0 10px;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.72);
+      font-weight: 600;
+    }
+
+    .list{margin:0;padding:0;list-style:none;border-top:1px solid var(--rule)}
+    .item{
+      padding: 12px 0;
+      border-bottom: 1px solid var(--rule);
+      display:grid;
+      grid-template-columns: 72px 1fr;
+      gap: 14px;
+      align-items:start;
+    }
+    .year{color: rgba(0,0,0,.82); font-weight:600}
+    .text{color: var(--muted); font-size: 15px}
+    .text b{color: rgba(0,0,0,.86); font-weight:600}
+
+    @media (max-width:700px){
+      header{flex-direction:column;align-items:flex-start}
+      .brand h1{font-size:40px;white-space:normal}
+      .item{grid-template-columns: 60px 1fr}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <h1><a href="index.html">Steve Wilson</a></h1>
+        <div class="sub">studio</div>
+      </div>
+      <nav aria-label="primary">
+        <a href="index.html">home</a>
+        <a href="paintings.html">paintings</a>
+        <a href="prints.html">prints and commissions</a>
+        <a class="active" href="exhibitions.html">exhibitions</a>
+        <a href="galleries.html">galleries</a>
+        <a href="about.html">about</a>
+      </nav>
+    </header>
+
+    <div class="content">
+      <div class="pageTitle">exhibitions</div>
+      <p>A selected list of exhibitions and recognitions.</p>
+
+      <div class="sectionTitle">selected exhibitions</div>
+      <ul class="list">
+
+        <li class="item">
+          <div class="year">2025</div>
+          <div class="text">
+            <b>Women’s Club of Louisville Art Show</b> — Exhibitor
+            <br><span style="color:rgba(0,0,0,.52)">Award of Merit (Juror: David O. Schuster)</span>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="year">2025</div>
+          <div class="text">
+            <b>Governor’s Derby Exhibit</b> — Selected artist (Kentucky Arts Council)
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="year">2025</div>
+          <div class="text">
+            <b>Spring Has Sprung</b> — Central Bank, John G. Irvin Gallery (selected artist)
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="year">2024</div>
+          <div class="text">
+            <b>Women’s Club of Louisville Art Show</b> — Exhibitor
+            <br><span style="color:rgba(0,0,0,.52)">Award of Merit (Juror: John Michael Carter)</span>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="year">2024</div>
+          <div class="text">
+            <b>Team Kentucky Gallery</b> — Kentucky State Capitol (Fall 2024; selected artist)
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="year">2023</div>
+          <div class="text">
+            <b>Women’s Club of Louisville Art Show</b> — Exhibitor
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
