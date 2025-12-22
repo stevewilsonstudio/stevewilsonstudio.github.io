@@ -11,143 +11,39 @@
 
   <style>
     :root{
-      --bg:#ffffff;
-      --text:#111;
-      --muted:rgba(0,0,0,0.62);
-      --muted2:rgba(0,0,0,0.44);
-      --rule: rgba(0,0,0,0.12);
+      --bg:#fff; --text:#111;
+      --muted: rgba(0,0,0,.62);
+      --muted2: rgba(0,0,0,.44);
+      --rule: rgba(0,0,0,.12);
       --max: 1320px;
       --radius: 0px; /* sharp corners */
     }
-
     *{box-sizing:border-box}
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--text);
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      line-height:1.55;
-    }
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55}
     a{color:inherit;text-decoration:none}
 
-    .wrap{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 28px 18px 70px;
-    }
+    .wrap{max-width:var(--max);margin:0 auto;padding:28px 18px 70px}
+    header{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+    .brand h1{margin:0;font-family:"Libre Bodoni",serif;font-style:italic;font-weight:300;font-size:46px;letter-spacing:.02em;line-height:.95;white-space:nowrap}
+    .brand .sub{margin:6px 0 0 2px;font-size:13px;color:var(--muted2);text-transform:lowercase}
+    nav{display:flex;flex-wrap:wrap;gap:18px;padding-bottom:4px}
+    nav a{font-size:15px;color:rgba(0,0,0,.72);text-transform:lowercase;letter-spacing:.06em;padding-bottom:2px;border-bottom:1px solid transparent}
+    nav a:hover{border-bottom-color:rgba(0,0,0,.35)}
+    nav a.active{color:rgba(0,0,0,.95);border-bottom-color:rgba(0,0,0,.75)}
 
-    header{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:18px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid var(--rule);
-    }
+    .pageTitle{margin:18px 0 12px;font-size:18px;font-weight:500;letter-spacing:.08em;text-transform:lowercase;color:rgba(0,0,0,.85)}
 
-    .brand h1{
-      margin:0;
-      font-family:"Libre Bodoni", serif;
-      font-style: italic;
-      font-weight: 300;
-      font-size: 46px;
-      letter-spacing: 0.02em;
-      line-height: 0.95;
-      text-transform:none;
-      white-space: nowrap;
-    }
-    .brand .sub{
-      margin:6px 0 0 2px;
-      font-size: 13px;
-      color: var(--muted2);
-      text-transform: lowercase;
-      letter-spacing: 0.02em;
-    }
+    /* Masonry */
+    .masonry{column-count:3;column-gap:14px}
+    .tile{break-inside:avoid;margin:0 0 14px}
+    .imgWrap{overflow:hidden;border-radius:var(--radius);background:#f2f2f2}
+    .imgWrap img{width:100%;height:auto;display:block;border-radius:var(--radius)}
+    .caption{margin-top:8px;display:flex;flex-direction:column;gap:2px}
+    .title{font-size:14px;font-weight:500;color:rgba(0,0,0,.92)}
+    .details{font-size:13px;color:var(--muted)}
 
-    nav{
-      display:flex;
-      flex-wrap:wrap;
-      gap:18px;
-      padding-bottom: 4px;
-    }
-    nav a{
-      font-size: 15px;
-      color: rgba(0,0,0,0.72);
-      text-transform: lowercase;
-      letter-spacing: 0.06em;
-      padding-bottom: 2px;
-      border-bottom: 1px solid transparent;
-    }
-    nav a:hover{ border-bottom-color: rgba(0,0,0,0.35); }
-    nav a.active{
-      color: rgba(0,0,0,0.95);
-      border-bottom-color: rgba(0,0,0,0.75);
-    }
-
-    .pageTitle{
-      margin: 18px 0 12px;
-      font-size: 18px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: lowercase;
-      color: rgba(0,0,0,0.85);
-    }
-
-    /* Masonry layout */
-    .masonry{
-      column-count: 3;
-      column-gap: 14px;
-    }
-
-    .tile{
-      break-inside: avoid;
-      margin: 0 0 14px;
-    }
-
-    .tile a{ display:block; }
-
-    .imgWrap{
-      position:relative;
-      overflow:hidden;
-      border-radius: var(--radius);
-      background: #f2f2f2;
-    }
-
-    .imgWrap img{
-      width:100%;
-      height:auto;
-      display:block;
-      border-radius: var(--radius);
-    }
-
-    .caption{
-      margin-top: 8px;
-      display:flex;
-      flex-direction:column;
-      gap:2px;
-    }
-
-    .title{
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-      color: rgba(0,0,0,0.92);
-      text-transform:none;
-    }
-
-    .details{
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    @media (max-width: 1100px){
-      .masonry{ column-count: 2; }
-      .brand h1{ font-size: 40px; white-space: normal; }
-    }
-    @media (max-width: 700px){
-      .masonry{ column-count: 1; }
-      header{ align-items:flex-start; flex-direction:column; }
-    }
+    @media (max-width:1100px){.masonry{column-count:2}.brand h1{font-size:40px;white-space:normal}}
+    @media (max-width:700px){header{flex-direction:column;align-items:flex-start}.masonry{column-count:1}}
   </style>
 </head>
 
@@ -158,28 +54,24 @@
         <h1><a href="index.html">Steve Wilson</a></h1>
         <div class="sub">studio</div>
       </div>
-
       <nav aria-label="primary">
         <a href="index.html">home</a>
         <a class="active" href="paintings.html">paintings</a>
-        <a href="prints.html">prints</a>
-        <a href="workshops.html">workshops &amp; exhibitions</a>
+        <a href="prints.html">prints and commissions</a>
+        <a href="exhibitions.html">exhibitions</a>
         <a href="galleries.html">galleries</a>
         <a href="about.html">about</a>
-        <a href="contact.html">contact</a>
       </nav>
     </header>
 
     <div class="pageTitle">paintings</div>
 
-    <!-- Add/Remove tiles here. Use your uploaded filenames exactly. -->
-    <section class="masonry" aria-label="Paintings masonry grid">
+    <section class="masonry" aria-label="Paintings">
+      <!-- Use your exact filenames. Add more tiles as you upload paintings. -->
 
       <div class="tile">
         <a href="Sailboats.jpg" target="_blank" rel="noopener">
-          <div class="imgWrap">
-            <img src="Sailboats.jpg" alt="Docks at St. Simons">
-          </div>
+          <div class="imgWrap"><img src="Sailboats.jpg" alt="Docks at St. Simons"></div>
           <div class="caption">
             <div class="title">Docks at St. Simons</div>
             <div class="details">16&quot;×20&quot; • acrylic on cradled birch</div>
@@ -189,9 +81,7 @@
 
       <div class="tile">
         <a href="Breakers.jpg" target="_blank" rel="noopener">
-          <div class="imgWrap">
-            <img src="Breakers.jpg" alt="Breakers">
-          </div>
+          <div class="imgWrap"><img src="Breakers.jpg" alt="Breakers"></div>
           <div class="caption">
             <div class="title">Breakers</div>
             <div class="details">36&quot;×48&quot; • acrylic on canvas</div>
@@ -201,9 +91,7 @@
 
       <div class="tile">
         <a href="Tulips.jpg" target="_blank" rel="noopener">
-          <div class="imgWrap">
-            <img src="Tulips.jpg" alt="Tulips">
-          </div>
+          <div class="imgWrap"><img src="Tulips.jpg" alt="Tulips"></div>
           <div class="caption">
             <div class="title">Tulips</div>
             <div class="details">20&quot;×30&quot; • oil on canvas</div>
@@ -213,9 +101,7 @@
 
       <div class="tile">
         <a href="Cumberland.jpg" target="_blank" rel="noopener">
-          <div class="imgWrap">
-            <img src="Cumberland.jpg" alt="Cumberland">
-          </div>
+          <div class="imgWrap"><img src="Cumberland.jpg" alt="Cumberland"></div>
           <div class="caption">
             <div class="title">Cumberland</div>
             <div class="details">details coming soon</div>
@@ -225,9 +111,7 @@
 
       <div class="tile">
         <a href="Breckenridge.jpg" target="_blank" rel="noopener">
-          <div class="imgWrap">
-            <img src="Breckenridge.jpg" alt="Breckenridge">
-          </div>
+          <div class="imgWrap"><img src="Breckenridge.jpg" alt="Breckenridge"></div>
           <div class="caption">
             <div class="title">Breckenridge</div>
             <div class="details">details coming soon</div>
@@ -237,35 +121,9 @@
 
       <div class="tile">
         <a href="Keeneland.jpg" target="_blank" rel="noopener">
-          <div class="imgWrap">
-            <img src="Keeneland.jpg" alt="Keeneland">
-          </div>
+          <div class="imgWrap"><img src="Keeneland.jpg" alt="Keeneland"></div>
           <div class="caption">
             <div class="title">Keeneland</div>
-            <div class="details">details coming soon</div>
-          </div>
-        </a>
-      </div>
-
-      <div class="tile">
-        <a href="Wailea.jpg" target="_blank" rel="noopener">
-          <div class="imgWrap">
-            <img src="Wailea.jpg" alt="Wailea">
-          </div>
-          <div class="caption">
-            <div class="title">Wailea</div>
-            <div class="details">details coming soon</div>
-          </div>
-        </a>
-      </div>
-
-      <div class="tile">
-        <a href="Golden-Hour-Creek.jpg" target="_blank" rel="noopener">
-          <div class="imgWrap">
-            <img src="Golden-Hour-Creek.jpg" alt="Golden Hour Creek">
-          </div>
-          <div class="caption">
-            <div class="title">Golden Hour Creek</div>
             <div class="details">details coming soon</div>
           </div>
         </a>
