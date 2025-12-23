@@ -1,135 +1,190 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>paintings — Steve Wilson</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Paintings — Steve Wilson</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --bg:#fff; --text:#111;
-      --muted: rgba(0,0,0,.62);
-      --muted2: rgba(0,0,0,.44);
-      --rule: rgba(0,0,0,.12);
-      --max: 1320px;
-      --radius: 0px; /* sharp corners */
+    body{
+      margin: 0;
+      background: #ffffff;
+      color: #111;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
-    *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55}
-    a{color:inherit;text-decoration:none}
 
-    .wrap{max-width:var(--max);margin:0 auto;padding:28px 18px 70px}
-    header{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
-    .brand h1{margin:0;font-family:"Libre Bodoni",serif;font-style:italic;font-weight:300;font-size:46px;letter-spacing:.02em;line-height:.95;white-space:nowrap}
-    .brand .sub{margin:6px 0 0 2px;font-size:13px;color:var(--muted2);text-transform:lowercase}
-    nav{display:flex;flex-wrap:wrap;gap:18px;padding-bottom:4px}
-    nav a{font-size:15px;color:rgba(0,0,0,.72);text-transform:lowercase;letter-spacing:.06em;padding-bottom:2px;border-bottom:1px solid transparent}
-    nav a:hover{border-bottom-color:rgba(0,0,0,.35)}
-    nav a.active{color:rgba(0,0,0,.95);border-bottom-color:rgba(0,0,0,.75)}
+    .top{
+      max-width: 1200px;
+      margin: 26px auto 0;
+      padding: 0 20px;
+    }
 
-    .pageTitle{margin:18px 0 12px;font-size:18px;font-weight:500;letter-spacing:.08em;text-transform:lowercase;color:rgba(0,0,0,.85)}
+    .brand{
+      font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 44px;
+      margin: 0;
+      line-height: 1;
+    }
 
-    /* Masonry */
-    .masonry{column-count:3;column-gap:14px}
-    .tile{break-inside:avoid;margin:0 0 14px}
-    .imgWrap{overflow:hidden;border-radius:var(--radius);background:#f2f2f2}
-    .imgWrap img{width:100%;height:auto;display:block;border-radius:var(--radius)}
-    .caption{margin-top:8px;display:flex;flex-direction:column;gap:2px}
-    .title{font-size:14px;font-weight:500;color:rgba(0,0,0,.92)}
-    .details{font-size:13px;color:var(--muted)}
+    .tag{
+      margin: 6px 0 18px;
+      font-size: 13px;
+      color: #666;
+    }
 
-    @media (max-width:1100px){.masonry{column-count:2}.brand h1{font-size:40px;white-space:normal}}
-    @media (max-width:700px){header{flex-direction:column;align-items:flex-start}.masonry{column-count:1}}
+    .nav{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 22px;
+      padding: 10px 0 18px;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+    .nav a{
+      text-decoration: none;
+      color: #7a7a7a;
+      text-transform: lowercase;
+      letter-spacing: .12em;
+      padding-bottom: 2px;
+    }
+    .nav a.active{
+      color: #111;
+      font-weight: 500;
+    }
+    .nav a:hover{ color:#111; }
+
+    .wrap{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* Masonry using columns (simple + reliable) */
+    .masonry{
+      column-count: 3;
+      column-gap: 18px;
+    }
+    @media (max-width: 1000px){ .masonry{ column-count: 2; } }
+    @media (max-width: 640px){ .masonry{ column-count: 1; } }
+
+    figure{
+      break-inside: avoid;
+      margin: 0 0 18px;
+    }
+
+    img{
+      width: 100%;
+      height: auto;
+      display: block;
+      /* sharp corners everywhere */
+      border-radius: 0;
+    }
+
+    figcaption{
+      padding-top: 10px;
+    }
+
+    .title{
+      font-size: 16px;
+      margin: 0;
+      font-weight: 500;
+      color: #b97500; /* warm yellow-orange */
+    }
+    .meta{
+      margin: 4px 0 0;
+      font-size: 13px;
+      color: #555;
+    }
+
+    .footer{
+      max-width: 1200px;
+      margin: 24px auto 0;
+      padding: 0 20px 22px;
+      color: #777;
+      font-size: 12px;
+    }
   </style>
 </head>
-
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <h1><a href="index.html">Steve Wilson</a></h1>
-        <div class="sub">studio</div>
-      </div>
-      <nav aria-label="primary">
-        <a href="index.html">home</a>
-        <a class="active" href="paintings.html">paintings</a>
-        <a href="prints.html">prints and commissions</a>
-        <a href="exhibitions.html">exhibitions</a>
-        <a href="galleries.html">galleries</a>
-        <a href="about.html">about</a>
-      </nav>
-    </header>
+  <header class="top">
+    <h1 class="brand">Steve Wilson</h1>
+    <div class="tag">colour comes alive</div>
 
-    <div class="pageTitle">paintings</div>
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html">home</a>
+      <a class="active" href="paintings.html">paintings</a>
+      <a href="prints.html">prints &amp; commissions</a>
+      <a href="exhibitions.html">workshops &amp; exhibitions</a>
+      <a href="galleries.html">galleries</a>
+      <a href="about.html">about</a>
+      <a href="contact.html">contact</a>
+    </nav>
+  </header>
 
-    <section class="masonry" aria-label="Paintings">
-      <!-- Use your exact filenames. Add more tiles as you upload paintings. -->
+  <main class="wrap">
+    <section class="masonry">
+      <!-- NOTE: Studio.jpg intentionally excluded (home only). -->
 
-      <div class="tile">
-        <a href="Sailboats.jpg" target="_blank" rel="noopener">
-          <div class="imgWrap"><img src="Sailboats.jpg" alt="Docks at St. Simons"></div>
-          <div class="caption">
-            <div class="title">Docks at St. Simons</div>
-            <div class="details">16&quot;×20&quot; • acrylic on cradled birch</div>
-          </div>
-        </a>
-      </div>
+      <figure>
+        <img src="Sailboats.jpg" alt="Docks at St. Simons">
+        <figcaption>
+          <p class="title">Docks at St. Simons</p>
+          <p class="meta">16&quot;×20&quot; · acrylic on cradled birch</p>
+        </figcaption>
+      </figure>
 
-      <div class="tile">
-        <a href="Breakers.jpg" target="_blank" rel="noopener">
-          <div class="imgWrap"><img src="Breakers.jpg" alt="Breakers"></div>
-          <div class="caption">
-            <div class="title">Breakers</div>
-            <div class="details">36&quot;×48&quot; • acrylic on canvas</div>
-          </div>
-        </a>
-      </div>
+      <figure>
+        <img src="Breakers.jpg" alt="Breakers">
+        <figcaption>
+          <p class="title">Breakers</p>
+          <p class="meta">&quot;×48&quot; · acrylic on canvas</p>
+        </figcaption>
+      </figure>
 
-      <div class="tile">
-        <a href="Tulips.jpg" target="_blank" rel="noopener">
-          <div class="imgWrap"><img src="Tulips.jpg" alt="Tulips"></div>
-          <div class="caption">
-            <div class="title">Tulips</div>
-            <div class="details">20&quot;×30&quot; • oil on canvas</div>
-          </div>
-        </a>
-      </div>
+      <figure>
+        <img src="Tulips.jpg" alt="Tulips">
+        <figcaption>
+          <p class="title">Tulips</p>
+          <p class="meta">20&quot;×30&quot; · oil on canvas</p>
+        </figcaption>
+      </figure>
 
-      <div class="tile">
-        <a href="Cumberland.jpg" target="_blank" rel="noopener">
-          <div class="imgWrap"><img src="Cumberland.jpg" alt="Cumberland"></div>
-          <div class="caption">
-            <div class="title">Cumberland</div>
-            <div class="details">details coming soon</div>
-          </div>
-        </a>
-      </div>
+      <!-- The rest: details coming soon -->
+      <figure><img src="Cumberland.jpg" alt="Cumberland"><figcaption><p class="title">Cumberland</p><p class="meta">details coming soon</p></figcaption></figure>
+      <figure><img src="Breckenridge.jpg" alt="Breckenridge"><figcaption><p class="title">Breckenridge</p><p class="meta">details coming soon</p></figcaption></figure>
+      <figure><img src="Keeneland.jpg" alt="Keeneland"><figcaption><p class="title">Keeneland</p><p class="meta">details coming soon</p></figcaption></figure>
+      <figure><img src="Keeneland-Bath.jpg" alt="Keeneland Bath"><figcaption><p class="title">Keeneland Bath</p><p class="meta">details coming soon</p></figcaption></figure>
 
-      <div class="tile">
-        <a href="Breckenridge.jpg" target="_blank" rel="noopener">
-          <div class="imgWrap"><img src="Breckenridge.jpg" alt="Breckenridge"></div>
-          <div class="caption">
-            <div class="title">Breckenridge</div>
-            <div class="details">details coming soon</div>
-          </div>
-        </a>
-      </div>
+      <figure><img src="Golden-Hour-Creek.jpg" alt="Golden Hour Creek"><figcaption><p class="title">Golden Hour Creek</p><p class="meta">details coming soon</p></figcaption></figure>
+      <figure><img src="Wailea.jpg" alt="Wailea"><figcaption><p class="title">Wailea</p><p class="meta">details coming soon</p></figcaption></figure>
 
-      <div class="tile">
-        <a href="Keeneland.jpg" target="_blank" rel="noopener">
-          <div class="imgWrap"><img src="Keeneland.jpg" alt="Keeneland"></div>
-          <div class="caption">
-            <div class="title">Keeneland</div>
-            <div class="details">details coming soon</div>
-          </div>
-        </a>
-      </div>
+      <figure><img src="Colorado.jpg" alt="Colorado"><figcaption><p class="title">Colorado</p><p class="meta">details coming soon</p></figcaption></figure>
+      <figure><img src="Southport-Docks-at-Dusk.jpg" alt="Southport Docks at Dusk"><figcaption><p class="title">Southport Docks at Dusk</p><p class="meta">details coming soon</p></figcaption></figure>
+      <figure><img src="The-Rock.jpg" alt="The Rock"><figcaption><p class="title">The Rock</p><p class="meta">details coming soon</p></figcaption></figure>
+
+      <figure><img src="Beach-Entry.jpg" alt="Beach Entry"><figcaption><p class="title">Beach Entry</p><p class="meta">details coming soon</p></figcaption></figure>
+      <figure><img src="Cashiers.jpg" alt="Cashiers"><figcaption><p class="title">Cashiers</p><p class="meta">details coming soon</p></figcaption></figure>
+      <figure><img src="Homeplace.jpg" alt="Homeplace"><figcaption><p class="title">Homeplace</p><p class="meta">details coming soon</p></figcaption></figure>
+      <figure><img src="Butterfly.jpg" alt="Butterfly"><figcaption><p class="title">Butterfly</p><p class="meta">details coming soon</p></figcaption></figure>
+      <figure><img src="Dance.jpg" alt="Dance"><figcaption><p class="title">Dance</p><p class="meta">details coming soon</p></figcaption></figure>
+      <figure><img src="Love.jpg" alt="Love"><figcaption><p class="title">Love</p><p class="meta">details coming soon</p></figcaption></figure>
+      <figure><img src="Sedona.jpg" alt="Sedona"><figcaption><p class="title">Sedona</p><p class="meta">details coming soon</p></figcaption></figure>
+      <figure><img src="Torii.jpg" alt="Torii"><figcaption><p class="title">Torii</p><p class="meta">details coming soon</p></figcaption></figure>
+      <figure><img src="Winter.jpg" alt="Winter"><figcaption><p class="title">Winter</p><p class="meta">details coming soon</p></figcaption></figure>
+
+      <!-- If you also want Sailboat.jpg (singular) shown, keep this; otherwise delete it -->
+      <figure><img src="Sailboat.jpg" alt="Sailboat"><figcaption><p class="title">Sailboat</p><p class="meta">details coming soon</p></figcaption></figure>
 
     </section>
-  </div>
+  </main>
+
+  <div class="footer">© Steve Wilson Studio</div>
 </body>
 </html>
