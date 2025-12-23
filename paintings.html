@@ -1,190 +1,272 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Paintings — Steve Wilson</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
+    :root{
+      --bg: #ffffff;
+      --text: #111;
+      --muted: rgba(17,17,17,.62);
+      --muted2: rgba(17,17,17,.45);
+      --hairline: rgba(17,17,17,.12);
+    }
+    *{ box-sizing:border-box; }
     body{
-      margin: 0;
-      background: #ffffff;
-      color: #111;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      margin:0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
     }
 
-    .top{
-      max-width: 1200px;
-      margin: 26px auto 0;
-      padding: 0 20px;
+    .wrap{
+      width:min(1120px, 92vw);
+      margin: 0 auto;
+      padding: 34px 0 56px;
+    }
+
+    header{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--hairline);
     }
 
     .brand{
-      font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+    }
+    .brand a{
+      text-decoration:none;
+      color: var(--text);
+    }
+    .name{
+      font-family: "Playfair Display", Georgia, serif;
       font-style: italic;
-      font-weight: 400;
-      font-size: 44px;
-      margin: 0;
+      font-weight: 600;
+      font-size: 34px;
+      letter-spacing: 0.02em;
       line-height: 1;
     }
-
-    .tag{
-      margin: 6px 0 18px;
-      font-size: 13px;
-      color: #666;
-    }
-
-    .nav{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px 22px;
-      padding: 10px 0 18px;
-      border-bottom: 1px solid #eee;
-      margin-bottom: 24px;
-      font-size: 14px;
-    }
-    .nav a{
-      text-decoration: none;
-      color: #7a7a7a;
+    .sub{
+      color: var(--muted);
+      font-weight: 300;
+      letter-spacing: 0.10em;
       text-transform: lowercase;
-      letter-spacing: .12em;
+      font-size: 13px;
+    }
+
+    nav{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 18px;
+      align-items:center;
+      justify-content:flex-end;
       padding-bottom: 2px;
     }
-    .nav a.active{
-      color: #111;
-      font-weight: 500;
+    nav a{
+      text-decoration:none;
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      text-transform: lowercase;
+      padding: 6px 0;
+      border-bottom: 1px solid transparent;
     }
-    .nav a:hover{ color:#111; }
+    nav a:hover { color: var(--text); border-bottom-color: rgba(17,17,17,.25); }
+    nav a.active { color: var(--text); border-bottom-color: rgba(17,17,17,.35); }
 
-    .wrap{
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px 60px;
+    .toprow{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap: 18px;
+      margin-top: 22px;
+      margin-bottom: 14px;
     }
-
-    /* Masonry using columns (simple + reliable) */
-    .masonry{
-      column-count: 3;
-      column-gap: 18px;
-    }
-    @media (max-width: 1000px){ .masonry{ column-count: 2; } }
-    @media (max-width: 640px){ .masonry{ column-count: 1; } }
-
-    figure{
-      break-inside: avoid;
-      margin: 0 0 18px;
-    }
-
-    img{
-      width: 100%;
-      height: auto;
-      display: block;
-      /* sharp corners everywhere */
-      border-radius: 0;
-    }
-
-    figcaption{
-      padding-top: 10px;
-    }
-
-    .title{
+    h1{
+      margin:0;
       font-size: 16px;
-      margin: 0;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
       font-weight: 500;
-      color: #b97500; /* warm yellow-orange */
+      color: var(--muted);
     }
-    .meta{
-      margin: 4px 0 0;
+    .tools{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      color: var(--muted2);
       font-size: 13px;
-      color: #555;
+    }
+    .toolbtn{
+      border: 1px solid rgba(17,17,17,.18);
+      background: transparent;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      cursor: pointer;
+      color: var(--muted);
+    }
+    .toolbtn:hover{ border-color: rgba(17,17,17,.28); color: var(--text); }
+
+    /* Masonry-ish columns without huge gaps */
+    .grid{
+      column-count: 3;
+      column-gap: 16px;
+    }
+    @media (max-width: 980px){ .grid{ column-count: 2; } }
+    @media (max-width: 620px){ .grid{ column-count: 1; } }
+
+    .card{
+      break-inside: avoid;
+      margin: 0 0 16px 0;
+    }
+    .thumb{
+      display:block;
+      width:100%;
+      height:auto;
+      border-radius: 0; /* sharp corners */
+    }
+    .card a{
+      text-decoration:none;
+      color: inherit;
     }
 
-    .footer{
-      max-width: 1200px;
-      margin: 24px auto 0;
-      padding: 0 20px 22px;
-      color: #777;
-      font-size: 12px;
+    .meta{
+      padding-top: 8px;
+      padding-bottom: 2px;
     }
+    .titleRow{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap: 10px;
+    }
+    .title{
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: 0.01em;
+      margin: 0;
+    }
+    .status{
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .details{
+      margin: 2px 0 0 0;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 300;
+    }
+    .price{
+      margin: 2px 0 0 0;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    footer{
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 1px solid var(--hairline);
+      color: var(--muted2);
+      font-size: 12px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+    }
+    footer a{ color: var(--muted2); text-decoration:none; }
+    footer a:hover{ color: var(--text); }
   </style>
 </head>
+
 <body>
-  <header class="top">
-    <h1 class="brand">Steve Wilson</h1>
-    <div class="tag">colour comes alive</div>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <a href="index.html" aria-label="Home">
+          <div class="name">Steve Wilson</div>
+        </a>
+        <div class="sub">original paintings</div>
+      </div>
 
-    <nav class="nav" aria-label="Primary">
-      <a href="index.html">home</a>
-      <a class="active" href="paintings.html">paintings</a>
-      <a href="prints.html">prints &amp; commissions</a>
-      <a href="exhibitions.html">workshops &amp; exhibitions</a>
-      <a href="galleries.html">galleries</a>
-      <a href="about.html">about</a>
-      <a href="contact.html">contact</a>
-    </nav>
-  </header>
+      <nav aria-label="Primary navigation">
+        <a class="active" href="paintings.html">paintings</a>
+        <a href="prints.html">prints &amp; commissions</a>
+        <a href="exhibitions.html">exhibitions</a>
+        <a href="galleries.html">galleries</a>
+        <a href="about.html">about</a>
+        <a href="contact.html">contact</a>
+      </nav>
+    </header>
 
-  <main class="wrap">
-    <section class="masonry">
-      <!-- NOTE: Studio.jpg intentionally excluded (home only). -->
+    <div class="toprow">
+      <h1>Paintings</h1>
+      <div class="tools">
+        <span>Prices: <strong id="priceState"></strong></span>
+        <button class="toolbtn" type="button" onclick="togglePrices()">Toggle prices</button>
+      </div>
+    </div>
 
-      <figure>
-        <img src="Sailboats.jpg" alt="Docks at St. Simons">
-        <figcaption>
-          <p class="title">Docks at St. Simons</p>
-          <p class="meta">16&quot;×20&quot; · acrylic on cradled birch</p>
-        </figcaption>
-      </figure>
+    <section class="grid" id="grid" aria-label="Paintings grid"></section>
 
-      <figure>
-        <img src="Breakers.jpg" alt="Breakers">
-        <figcaption>
-          <p class="title">Breakers</p>
-          <p class="meta">&quot;×48&quot; · acrylic on canvas</p>
-        </figcaption>
-      </figure>
+    <footer>
+      <div>© Steve Wilson Studio</div>
+      <div><a href="mailto:stevenrwilson7@icloud.com">stevenrwilson7@icloud.com</a></div>
+    </footer>
+  </div>
 
-      <figure>
-        <img src="Tulips.jpg" alt="Tulips">
-        <figcaption>
-          <p class="title">Tulips</p>
-          <p class="meta">20&quot;×30&quot; · oil on canvas</p>
-        </figcaption>
-      </figure>
+  <script src="data.js"></script>
+  <script>
+    const grid = document.getElementById("grid");
+    const priceState = document.getElementById("priceState");
+    priceState.textContent = window.SHOW_PRICES ? "on" : "off";
 
-      <!-- The rest: details coming soon -->
-      <figure><img src="Cumberland.jpg" alt="Cumberland"><figcaption><p class="title">Cumberland</p><p class="meta">details coming soon</p></figcaption></figure>
-      <figure><img src="Breckenridge.jpg" alt="Breckenridge"><figcaption><p class="title">Breckenridge</p><p class="meta">details coming soon</p></figcaption></figure>
-      <figure><img src="Keeneland.jpg" alt="Keeneland"><figcaption><p class="title">Keeneland</p><p class="meta">details coming soon</p></figcaption></figure>
-      <figure><img src="Keeneland-Bath.jpg" alt="Keeneland Bath"><figcaption><p class="title">Keeneland Bath</p><p class="meta">details coming soon</p></figcaption></figure>
+    function escapeHtml(s){
+      return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+    }
 
-      <figure><img src="Golden-Hour-Creek.jpg" alt="Golden Hour Creek"><figcaption><p class="title">Golden Hour Creek</p><p class="meta">details coming soon</p></figcaption></figure>
-      <figure><img src="Wailea.jpg" alt="Wailea"><figcaption><p class="title">Wailea</p><p class="meta">details coming soon</p></figcaption></figure>
+    function render(){
+      grid.innerHTML = window.PAINTINGS.map(p => {
+        const statusLabel = p.status === "sold" ? "sold" : "available";
+        const details = `${p.size ? escapeHtml(p.size) + " · " : ""}${escapeHtml(p.medium || "")}`.trim();
+        const price = (window.SHOW_PRICES && p.status === "available" && typeof p.price === "number")
+          ? `<p class="price">${escapeHtml(formatUSD(p.price))}</p>`
+          : ``;
 
-      <figure><img src="Colorado.jpg" alt="Colorado"><figcaption><p class="title">Colorado</p><p class="meta">details coming soon</p></figcaption></figure>
-      <figure><img src="Southport-Docks-at-Dusk.jpg" alt="Southport Docks at Dusk"><figcaption><p class="title">Southport Docks at Dusk</p><p class="meta">details coming soon</p></figcaption></figure>
-      <figure><img src="The-Rock.jpg" alt="The Rock"><figcaption><p class="title">The Rock</p><p class="meta">details coming soon</p></figcaption></figure>
-
-      <figure><img src="Beach-Entry.jpg" alt="Beach Entry"><figcaption><p class="title">Beach Entry</p><p class="meta">details coming soon</p></figcaption></figure>
-      <figure><img src="Cashiers.jpg" alt="Cashiers"><figcaption><p class="title">Cashiers</p><p class="meta">details coming soon</p></figcaption></figure>
-      <figure><img src="Homeplace.jpg" alt="Homeplace"><figcaption><p class="title">Homeplace</p><p class="meta">details coming soon</p></figcaption></figure>
-      <figure><img src="Butterfly.jpg" alt="Butterfly"><figcaption><p class="title">Butterfly</p><p class="meta">details coming soon</p></figcaption></figure>
-      <figure><img src="Dance.jpg" alt="Dance"><figcaption><p class="title">Dance</p><p class="meta">details coming soon</p></figcaption></figure>
-      <figure><img src="Love.jpg" alt="Love"><figcaption><p class="title">Love</p><p class="meta">details coming soon</p></figcaption></figure>
-      <figure><img src="Sedona.jpg" alt="Sedona"><figcaption><p class="title">Sedona</p><p class="meta">details coming soon</p></figcaption></figure>
-      <figure><img src="Torii.jpg" alt="Torii"><figcaption><p class="title">Torii</p><p class="meta">details coming soon</p></figcaption></figure>
-      <figure><img src="Winter.jpg" alt="Winter"><figcaption><p class="title">Winter</p><p class="meta">details coming soon</p></figcaption></figure>
-
-      <!-- If you also want Sailboat.jpg (singular) shown, keep this; otherwise delete it -->
-      <figure><img src="Sailboat.jpg" alt="Sailboat"><figcaption><p class="title">Sailboat</p><p class="meta">details coming soon</p></figcaption></figure>
-
-    </section>
-  </main>
-
-  <div class="footer">© Steve Wilson Studio</div>
+        return `
+          <article class="card">
+            <a href="viewer.html?slug=${encodeURIComponent(p.slug)}" aria-label="${escapeHtml(p.title)}">
+              <img class="thumb" src="${escapeHtml(p.file)}" alt="${escapeHtml(p.title)}" loading="lazy">
+              <div class="meta">
+                <div class="titleRow">
+                  <h2 class="title">${escapeHtml(p.title)}</h2>
+                  <div class="status">${escapeHtml(statusLabel)}</div>
+                </div>
+                <p class="details">${details}</p>
+                ${price}
+              </div>
+            </a>
+          </article>
+        `;
+      }).join("");
+    }
+    render();
+  </script>
 </body>
 </html>
