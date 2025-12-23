@@ -85,41 +85,15 @@
     nav a:hover { color: var(--text); border-bottom-color: rgba(17,17,17,.25); }
     nav a.active { color: var(--text); border-bottom-color: rgba(17,17,17,.35); }
 
-    .toprow{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-end;
-      gap: 18px;
-      margin-top: 22px;
-      margin-bottom: 14px;
-    }
     h1{
-      margin:0;
+      margin: 22px 0 14px;
       font-size: 16px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       font-weight: 500;
       color: var(--muted);
     }
-    .tools{
-      display:flex;
-      gap: 10px;
-      align-items:center;
-      color: var(--muted2);
-      font-size: 13px;
-    }
-    .toolbtn{
-      border: 1px solid rgba(17,17,17,.18);
-      background: transparent;
-      border-radius: 999px;
-      padding: 6px 10px;
-      font-size: 12px;
-      cursor: pointer;
-      color: var(--muted);
-    }
-    .toolbtn:hover{ border-color: rgba(17,17,17,.28); color: var(--text); }
 
-    /* Masonry-ish columns without huge gaps */
     .grid{
       column-count: 3;
       column-gap: 16px;
@@ -135,7 +109,7 @@
       display:block;
       width:100%;
       height:auto;
-      border-radius: 0; /* sharp corners */
+      border-radius: 0;
     }
     .card a{
       text-decoration:none;
@@ -215,13 +189,7 @@
       </nav>
     </header>
 
-    <div class="toprow">
-      <h1>Paintings</h1>
-      <div class="tools">
-        <span>Prices: <strong id="priceState"></strong></span>
-        <button class="toolbtn" type="button" onclick="togglePrices()">Toggle prices</button>
-      </div>
-    </div>
+    <h1>Paintings</h1>
 
     <section class="grid" id="grid" aria-label="Paintings grid"></section>
 
@@ -234,39 +202,35 @@
   <script src="data.js"></script>
   <script>
     const grid = document.getElementById("grid");
-    const priceState = document.getElementById("priceState");
-    priceState.textContent = window.SHOW_PRICES ? "on" : "off";
 
     function escapeHtml(s){
       return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
     }
 
-    function render(){
-      grid.innerHTML = window.PAINTINGS.map(p => {
-        const statusLabel = p.status === "sold" ? "sold" : "available";
-        const details = `${p.size ? escapeHtml(p.size) + " · " : ""}${escapeHtml(p.medium || "")}`.trim();
-        const price = (window.SHOW_PRICES && p.status === "available" && typeof p.price === "number")
-          ? `<p class="price">${escapeHtml(formatUSD(p.price))}</p>`
-          : ``;
+    grid.innerHTML = window.PAINTINGS.map(p => {
+      const statusLabel = p.status === "sold" ? "sold" : "available";
+      const details = `${p.size ? escapeHtml(p.size) + " · " : ""}${escapeHtml(p.medium || "")}`.trim();
 
-        return `
-          <article class="card">
-            <a href="viewer.html?slug=${encodeURIComponent(p.slug)}" aria-label="${escapeHtml(p.title)}">
-              <img class="thumb" src="${escapeHtml(p.file)}" alt="${escapeHtml(p.title)}" loading="lazy">
-              <div class="meta">
-                <div class="titleRow">
-                  <h2 class="title">${escapeHtml(p.title)}</h2>
-                  <div class="status">${escapeHtml(statusLabel)}</div>
-                </div>
-                <p class="details">${details}</p>
-                ${price}
+      const price = (p.status === "available" && typeof p.price === "number")
+        ? `<p class="price">${escapeHtml(formatUSD(p.price))}</p>`
+        : ``;
+
+      return `
+        <article class="card">
+          <a href="viewer.html?slug=${encodeURIComponent(p.slug)}" aria-label="${escapeHtml(p.title)}">
+            <img class="thumb" src="${escapeHtml(p.file)}" alt="${escapeHtml(p.title)}" loading="lazy">
+            <div class="meta">
+              <div class="titleRow">
+                <h2 class="title">${escapeHtml(p.title)}</h2>
+                <div class="status">${escapeHtml(statusLabel)}</div>
               </div>
-            </a>
-          </article>
-        `;
-      }).join("");
-    }
-    render();
+              <p class="details">${details}</p>
+              ${price}
+            </div>
+          </a>
+        </article>
+      `;
+    }).join("");
   </script>
 </body>
 </html>
