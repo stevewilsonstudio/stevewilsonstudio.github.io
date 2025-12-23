@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Artwork — Steve Wilson</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#fff;
+      --text:#111;
+      --muted: rgba(17,17,17,.62);
+      --hairline: rgba(17,17,17,.12);
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    }
+    .wrap{
+      width:min(980px, 92vw);
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+    header{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .brand a{ text-decoration:none; color: var(--text); }
+    .name{
+      font-family:"Playfair Display", Georgia, serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 34px;
+      letter-spacing: 0.02em;
+      line-height: 1;
+    }
+    .sub{
+      margin-top: 6px;
+      color: var(--muted);
+      font-weight: 300;
+      letter-spacing: 0.10em;
+      text-transform: lowercase;
+      font-size: 13px;
+    }
+
+    nav{
+      display:flex;
+      gap: 18px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:flex-end;
+      padding-bottom: 2px;
+    }
+    nav a{
+      text-decoration:none;
+      color: rgba(17,17,17,.60);
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      text-transform: lowercase;
+      padding: 6px 0;
+      border-bottom: 1px solid transparent;
+    }
+    nav a:hover{ color: var(--text); border-bottom-color: rgba(17,17,17,.25); }
+
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      margin-top: 18px;
+      margin-bottom: 14px;
+    }
+    .back a{
+      color: rgba(17,17,17,.70);
+      text-decoration:none;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+    }
+    .back a:hover{ color: var(--text); }
+
+    .toolbtn{
+      border: 1px solid rgba(17,17,17,.18);
+      background: transparent;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      cursor: pointer;
+      color: rgba(17,17,17,.65);
+    }
+    .toolbtn:hover{ border-color: rgba(17,17,17,.28); color: var(--text); }
+
+    .art{
+      display:flex;
+      justify-content:center;
+    }
+    img{
+      width: 100%;
+      max-width: 860px;
+      height: auto;
+      border-radius: 0; /* sharp corners */
+      display:block;
+    }
+
+    .caption{
+      margin: 14px auto 0;
+      max-width: 860px;
+      text-align: center;
+      color: rgba(17,17,17,.70);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .title{
+      font-weight: 600;
+      color: var(--text);
+    }
+    .meta{
+      color: rgba(17,17,17,.58);
+      font-weight: 300;
+    }
+    .status{
+      display:inline-block;
+      margin-left: 8px;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(17,17,17,.55);
+    }
+
+    .nav2{
+      margin-top: 16px;
+      display:flex;
+      justify-content:center;
+      gap: 10px;
+      color: rgba(17,17,17,.55);
+      font-size: 14px;
+      letter-spacing: 0.03em;
+    }
+    .nav2 a{
+      color: rgba(17,17,17,.65);
+      text-decoration:none;
+    }
+    .nav2 a:hover{ color: var(--text); }
+
+    .cta{
+      margin-top: 14px;
+      text-align:center;
+      color: rgba(17,17,17,.55);
+      font-size: 13px;
+    }
+    .cta a{ color: rgba(17,17,17,.75); text-decoration:none; }
+    .cta a:hover{ color: var(--text); }
+
+    footer{
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 1px solid var(--hairline);
+      color: rgba(17,17,17,.45);
+      font-size: 12px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <a href="index.html"><div class="name">Steve Wilson</div></a>
+        <div class="sub">original paintings</div>
+      </div>
+
+      <nav aria-label="Primary navigation">
+        <a href="paintings.html">paintings</a>
+        <a href="prints.html">prints &amp; commissions</a>
+        <a href="exhibitions.html">exhibitions</a>
+        <a href="galleries.html">galleries</a>
+        <a href="about.html">about</a>
+        <a href="contact.html">contact</a>
+      </nav>
+    </header>
+
+    <div class="topbar">
+      <div class="back"><a href="paintings.html">← back to paintings</a></div>
+      <button class="toolbtn" type="button" onclick="togglePrices()">Toggle prices</button>
+    </div>
+
+    <section class="art" aria-label="Artwork">
+      <img id="img" src="" alt="" />
+    </section>
+
+    <div class="caption" id="caption"></div>
+
+    <div class="nav2">
+      <a id="prev" href="#">prev</a>
+      <span>/</span>
+      <a id="next" href="#">next</a>
+    </div>
+
+    <div class="cta">
+      For inquiries, email <a href="mailto:stevenrwilson7@icloud.com">stevenrwilson7@icloud.com</a>
+    </div>
+
+    <footer>
+      <div>© Steve Wilson Studio</div>
+      <div>Prices: <span id="priceState"></span></div>
+    </footer>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get("slug");
+
+    const priceState = document.getElementById("priceState");
+    priceState.textContent = window.SHOW_PRICES ? "on" : "off";
+
+    const idx = window.PAINTINGS.findIndex(p => p.slug === slug);
+    const current = idx >= 0 ? window.PAINTINGS[idx] : window.PAINTINGS[0];
+
+    const img = document.getElementById("img");
+    const caption = document.getElementById("caption");
+
+    function esc(s){ return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+
+    img.src = current.file;
+    img.alt = current.title;
+
+    const statusLabel = current.status === "sold" ? "sold" : "available";
+    const details = `${current.size ? current.size + " · " : ""}${current.medium || ""}`.trim();
+
+    const priceHtml = (window.SHOW_PRICES && current.status === "available" && typeof current.price === "number")
+      ? ` · <span class="meta">${esc(formatUSD(current.price))}</span>`
+      : "";
+
+    caption.innerHTML = `
+      <span class="title">${esc(current.title)}</span>
+      <span class="status">${esc(statusLabel)}</span>
+      <div class="meta">${esc(details)}${priceHtml}</div>
+    `;
+
+    // prev/next
+    const prev = document.getElementById("prev");
+    const next = document.getElementById("next");
+
+    const prevIdx = (idx <= 0 ? window.PAINTINGS.length - 1 : idx - 1);
+    const nextIdx = (idx >= window.PAINTINGS.length - 1 ? 0 : idx + 1);
+
+    prev.href = `viewer.html?slug=${encodeURIComponent(window.PAINTINGS[prevIdx].slug)}`;
+    next.href = `viewer.html?slug=${encodeURIComponent(window.PAINTINGS[nextIdx].slug)}`;
+
+    // If slug is missing/invalid, normalize the URL to the first painting
+    if (!slug || idx < 0) {
+      history.replaceState(null, "", `viewer.html?slug=${encodeURIComponent(current.slug)}`);
+    }
+  </script>
+</body>
+</html>
