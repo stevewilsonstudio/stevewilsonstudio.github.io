@@ -5,7 +5,7 @@ window.PAINTINGS = [
   { file: "Breakers.jpg", slug: "breakers", title: "Breakers", size: "30×40", medium: "acrylic on canvas", status: "available", price: 6750 },
   { file: "Breckenridge.jpg", slug: "breckenridge", title: "Breckenridge", size: "16×20", medium: "oil on canvas", status: "available", price: 1800 },
   { file: "Butterfly.jpg", slug: "butterfly", title: "Butterfly", size: "20×20", medium: "acrylic on canvas", status: "sold", price: null },
-  { file: "Cashiers.jpg", slug: "old-iron-bridge", title: "Old Iron Bridge", size: "11×14", medium: "acrylic on cradled birch", status: "available", price: 875 },
+{ file: "Cashiers.jpg", slug: "old-iron-bridge", title: "Old Iron Bridge", size: "11×14", medium: "acrylic on cradled birch", status: "sold", price: null },
   { file: "Colorado.jpg", slug: "colorado", title: "Colorado", size: "8×10", medium: "acrylic on birch panel", status: "sold", price: null },
   { file: "Cumberland.jpg", slug: "cumberland", title: "Cumberland", size: "24×36", medium: "oil on canvas", status: "available", price: 4860 },
   { file: "Dance.jpg", slug: "dia-de-los-muertos", title: "Día de Los Muertos", size: "22×28", medium: "acrylic on canvas", status: "available", price: 3465 },
