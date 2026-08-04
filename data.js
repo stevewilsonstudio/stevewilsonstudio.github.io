@@ -15,7 +15,7 @@ window.PAINTINGS = [
   { file: "Keeneland.jpg", slug: "morning-workout", title: "Morning Workout", size: "16×20", medium: "acrylic on cradled birch", status: "available", price: 1800 },
   { file: "Love.jpg", slug: "first-dance", title: "First Dance", size: "16×20", medium: "oil on canvas", status: "sold", price: null },
   { file: "Sailboat.jpg", slug: "southport", title: "Southport", size: "24×36", medium: "oil on canvas", status: "sold", price: null },
-  { file: "Sailboats.jpg", slug: "docks-at-st-simons", title: "Docks at St. Simons", size: "16×20", medium: "acrylic on cradled birch", status: "available", price: 1800 },
+  { file: "Sailboats.jpg", slug: "docks-at-st-simons", title: "Docks at St. Simons", size: "16×20", medium: "acrylic on cradled birch", status: "sold", price: null },
   { file: "Sedona.jpg", slug: "vortex", title: "Vortex", size: "30×40", medium: "oil on canvas", status: "available", price: 6750 },
   { file: "Southport-Docks-at-Dusk.jpg", slug: "southport-docks-at-dusk", title: "Southport Docks at Dusk", size: "8×10", medium: "acrylic on cradled birch", status: "available", price: 450 },
   { file: "The-Rock.jpg", slug: "the-rock", title: "The Rock", size: "8×10", medium: "acrylic on birch panel", status: "sold", price: null },
