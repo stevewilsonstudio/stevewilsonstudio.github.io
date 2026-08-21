@@ -31,7 +31,8 @@ window.PAINTINGS = [
   { file: "Marsh_Stillness.jpg", slug: "marsh-stillness", title: "Marsh Stillness", size: "16×16", medium: "acrylic on canvas", status: "available", price: 1440 },
   { file: "Sunrise_over_East_Beach.jpg", slug: "sunrise-over-east-beach", title: "Sunrise Over East Beach", size: "36×36", medium: "acrylic on canvas", status: "available", price: 7290 },
   { file: "The_Watch_at_Frederica.jpg", slug: "the-watch-at-frederica", title: "The Watch at Frederica", size: "20×16", medium: "acrylic on cradled birch", status: "available", price: 1800 },
-  { file: "Where_the_Light_Rests.jpg", slug: "where-the-light-rests", title: "Where the Light Rests", size: "16×20", medium: "acrylic on cradled birch", status: "available", price: 1800 }
+  { file: "Where_the_Light_Rests.jpg", slug: "where-the-light-rests", title: "Where the Light Rests", size: "16×20", medium: "acrylic on cradled birch", status: "available", price: 1800 },
+  { file: "Between_Movements.jpg", slug: "between-movements", title: "Between Movements", size: "24×30", medium: "acrylic on canvas", status: "available", price: 5000 }
 ];
 
 window.formatUSD = function formatUSD(n) {
